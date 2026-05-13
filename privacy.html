@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Mado Digital</title>
+    <meta name="description" content="Privacy Policy for Mado Digital apps including Gomi Guide.">
+    <link rel="canonical" href="https://madodigital.net/privacy.html">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%23a855f7'/><text x='50' y='68' font-size='55' font-weight='bold' text-anchor='middle' fill='white' font-family='sans-serif'>M</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-base: #0a0a0f;
+            --bg-mid: #0d0d1a;
+            --bg-deep: #111128;
+            --purple: #a855f7;
+            --cyan: #06b6d4;
+            --text: #f1f5f9;
+            --text-dim: rgba(241, 245, 249, 0.65);
+            --glass: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-base);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(at 20% 10%, rgba(168, 85, 247, 0.12), transparent 50%),
+                radial-gradient(at 80% 80%, rgba(6, 182, 212, 0.08), transparent 50%);
+        }
+        .container { max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--purple); }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--purple) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .updated {
+            color: var(--text-dim);
+            font-size: 0.875rem;
+            margin-bottom: 2.5rem;
+        }
+        .intro {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-dim);
+        }
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.375rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+        p { color: var(--text-dim); margin-bottom: 0.75rem; }
+        ul { list-style: none; padding-left: 0; margin-bottom: 0.75rem; }
+        li {
+            color: var(--text-dim);
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        li::before {
+            content: '';
+            position: absolute;
+            left: 0.25rem;
+            top: 0.75rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--purple);
+        }
+        a { color: var(--purple); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        footer {
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <a href="/" class="back-link">← Back to Mado Digital</a>
+
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last updated: May 13, 2026</p>
+
+        <div class="intro">
+            <p>This Privacy Policy describes how Mado Digital LLC ("we," "us," "our") collects, uses, and protects information across our apps, including <strong>Gomi Guide</strong>. We keep things simple — we only collect what's needed to make the app work, and we never sell your data.</p>
+        </div>
+
+        <h2>What We Collect</h2>
+        <ul>
+            <li>Your email address (to create your account)</li>
+            <li>Your city or ward in Japan (to show local sorting rules)</li>
+            <li>Photos you scan (sent securely to our AI service for analysis, then discarded — never stored on our servers)</li>
+            <li>Scan feedback you submit (to improve sorting accuracy)</li>
+            <li>Basic usage analytics (app opens, feature usage — no personal data)</li>
+            <li>Purchase receipts for subscription verification (verified server-to-server with Apple)</li>
+        </ul>
+
+        <h2>How We Use It</h2>
+        <ul>
+            <li>Power AI-based garbage sorting using OpenAI's vision API (photos are sent securely, processed, and immediately discarded)</li>
+            <li>Show your local collection schedule</li>
+            <li>Send pickup reminders (only if you opt in)</li>
+            <li>Display relevant ads via Google AdMob (free users only — Pro users see no ads)</li>
+            <li>Process subscription purchases through Apple's In-App Purchase system</li>
+            <li>Improve the app experience based on anonymous usage patterns</li>
+        </ul>
+
+        <h2>What We Never Do</h2>
+        <ul>
+            <li>Sell or share your personal data with third parties</li>
+            <li>Store your photos after AI processing is complete</li>
+            <li>Track your location or activity outside the app</li>
+            <li>Use your data for purposes unrelated to the app</li>
+        </ul>
+
+        <h2>Third-Party Services</h2>
+        <p>To provide our services, we share specific data with these processors:</p>
+        <ul>
+            <li><strong>Supabase</strong> — secure authentication and data storage</li>
+            <li><strong>OpenAI</strong> — image analysis (photos sent transiently, not retained by OpenAI for training when sent via our API)</li>
+            <li><strong>Google AdMob</strong> — ad delivery for free users (with Apple App Tracking Transparency consent)</li>
+            <li><strong>Apple</strong> — App Store purchases and subscription management</li>
+        </ul>
+
+        <h2>Your Control</h2>
+        <ul>
+            <li>Delete your account and all associated data anytime from the app's Settings</li>
+            <li>Turn off notifications whenever you want</li>
+            <li>Opt out of personalized ads in your device's Settings → Privacy → Tracking</li>
+            <li>Request a copy of your data by contacting us at <a href="mailto:officialmadodigital@gmail.com">officialmadodigital@gmail.com</a></li>
+            <li>Manage or cancel subscriptions through your Apple ID Subscription Settings</li>
+        </ul>
+
+        <h2>Children's Privacy</h2>
+        <p>Our apps are not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us information, contact us and we will delete it.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>If we make material changes to this policy, we will update the "Last updated" date above and, where appropriate, notify you in-app or by email.</p>
+
+        <h2>Contact Us</h2>
+        <p>Questions about this policy or your data? Reach out at <a href="mailto:officialmadodigital@gmail.com">officialmadodigital@gmail.com</a>.</p>
+
+        <footer>
+            &copy; 2026 Mado Digital LLC. All rights reserved.
+        </footer>
+    </main>
+</body>
+</html>
