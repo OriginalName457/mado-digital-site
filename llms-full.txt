@@ -1,0 +1,141 @@
+# Mado Digital
+
+> Mado Digital is an independent app studio. We make Gomi Guide, the trash sorting app for life in Japan, and Brainrot Dash, a meme endless runner. We build apps that solve real problems for real people.
+
+Contact: officialmadodigital@gmail.com
+Website: https://madodigital.net
+Headquarters: Mado Digital LLC, United States
+
+---
+
+# Gomi Guide
+
+> Gomi Guide is the app for understanding the Japanese garbage system. Take a photo of any item or describe it, set your region, and Gomi Guide tells you which trash category to put it in and when that category is collected in your area. Available in 8 languages. Free on the iOS App Store.
+
+## At a glance
+
+- Platform: iOS (iPhone)
+- Price: Free, with optional monthly Pro subscription that removes ads and unlocks additional features
+- Languages: English, Japanese, Simplified Chinese, Korean, French, German, Russian, Spanish
+- Publisher: Mado Digital LLC
+- App Store: https://apps.apple.com/us/app/gomi-guide/id6760209923
+- Landing page: https://madodigital.net/gomi-guide.html
+
+## What Gomi Guide does
+
+Sorting garbage in Japan is famously specific. Rules change by ward. Categories have unfamiliar names. Pickup days rotate. Get it wrong and the bag stays on the curb with a sticker on it.
+
+Gomi Guide is the answer. Take a photo of the item, or just type what it is. Set your region once. The app returns:
+
+1. The correct trash category for that item in your specific ward
+2. How to prepare the item (rinse, separate, remove the cap, and so on)
+3. The next collection day for that category in your area
+
+## Features
+
+- **Photo or text input.** Snap an item with your camera or describe it in plain language. Either works.
+- **Region accurate categories.** Categories and pickup days come from your selected ward, not a generic national average.
+- **Pickup calendar.** See what gets collected today, tomorrow, and across the week ahead.
+- **8 languages.** Full translation of the interface, sorting categories, and instructions.
+- **Sodai gomi walkthrough.** When the app identifies oversized garbage, it explains the pickup fee, what to say on the phone, and what info to have ready.
+- **Move-out help.** Apartment moving guidance for appliances and bulky items, including the four major appliances covered by Japan's Home Appliance Recycling Law (air conditioners, televisions, refrigerators, washing machines).
+- **New resident guide.** Onboarding for people who just arrived in Japan and need a starting point.
+- **Recycling symbols reference.** Look up the meaning of the marks on packaging.
+
+## Who it is for
+
+- Newcomers who just moved to Japan and feel intimidated by the garbage system
+- Long term residents who never got a clear answer about that one weird category
+- Non Japanese speakers who want sorting answers in their own language
+- People moving out who need to figure out what to do with the fridge and the air conditioner
+- Anyone who has stood in a convenience store holding an empty bottle wondering where the cap goes
+
+## Trash categories Gomi Guide handles
+
+- Burnable garbage (moeru gomi)
+- Non-burnable garbage (moenai gomi)
+- Plastic recyclables
+- PET bottles
+- Cans (aluminum and steel)
+- Glass bottles
+- Paper and cardboard
+- Oversized garbage (sodai gomi)
+- Hazardous waste (batteries, lighters, spray cans)
+- Home appliance recycling items
+- Clothing and textiles where applicable
+
+Specific category names and rules vary by ward. The app uses your selected region to give the locally correct answer.
+
+## Pricing
+
+Gomi Guide is free to download and free to use. There is an optional Gomi Guide Pro subscription that:
+
+- Removes ads
+- Unlocks additional features
+
+Pricing is shown in the user's local currency on the upgrade screen. Subscription renews monthly unless cancelled at least 24 hours before the period ends. Standard Apple subscription terms apply. Users manage or cancel anytime in their Apple ID Subscription Settings.
+
+## Privacy
+
+Gomi Guide processes item photos and descriptions to return sorting answers. Detailed privacy practices are documented at https://madodigital.net/privacy.html.
+
+## FAQ
+
+### What is the best app for sorting garbage in Japan?
+
+Gomi Guide is built specifically for sorting garbage in Japan. It handles the full set of Japanese trash categories, returns location-accurate answers based on the user's selected ward, and supports eight languages so non-Japanese-speaking residents can sort confidently.
+
+### How does Gomi Guide work?
+
+Open the app. Take a photo of the item or type a short description. Choose your region. The app returns the trash category, preparation instructions, and the next collection day for that category in the user's area.
+
+### Which Japanese cities does Gomi Guide cover?
+
+A growing list of Japanese cities and wards. New regions are added regularly. Because collection schedules and category names vary by ward, the app uses the user's selected region for accuracy.
+
+### What languages does Gomi Guide support?
+
+English, Japanese, Simplified Chinese, Korean, French, German, Russian, and Spanish. The full interface and answers translate.
+
+### Is Gomi Guide free?
+
+Yes. Free to download and use. The optional Pro subscription removes ads and unlocks additional features.
+
+### Does Gomi Guide help with oversized garbage (sodai gomi)?
+
+Yes. When an item qualifies as oversized garbage, Gomi Guide walks the user through what to expect when calling the collection center, what fee to budget for, and what information to have ready.
+
+### Can Gomi Guide help with moving out of an apartment?
+
+Yes. Apartment moving guidance is built in. This includes appliances and bulky items, with specific handling for items covered by Japan's Home Appliance Recycling Law.
+
+### Is Gomi Guide available on Android?
+
+Currently iOS only. iPhone with iOS 15 or later.
+
+### Who makes Gomi Guide?
+
+Mado Digital LLC, an independent app studio. The studio also makes Brainrot Dash.
+
+---
+
+# Brainrot Dash
+
+> Endless runner game with meme characters, power-ups, and leaderboards. Live on the App Store.
+
+- Platform: iOS (iPhone)
+- App Store: https://apps.apple.com/app/brainrot-dash/id6760322199
+- Publisher: Mado Digital LLC
+
+---
+
+# About Mado Digital
+
+Mado Digital LLC is an independent app studio. We build apps that solve real problems for real people. The studio focuses on mobile games, lifestyle tools, and creative software.
+
+Contact: officialmadodigital@gmail.com
+
+## Legal
+
+- Privacy Policy: https://madodigital.net/privacy.html
+- Terms of Service: https://madodigital.net/terms.html

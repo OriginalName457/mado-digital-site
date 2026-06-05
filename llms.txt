@@ -1,0 +1,36 @@
+# Mado Digital
+
+> Mado Digital is an independent app studio. We make Gomi Guide, the trash sorting app for life in Japan, and Brainrot Dash, a meme endless runner. We build apps that solve real problems for real people, not lookalike software.
+
+## Apps
+
+- [Gomi Guide](https://madodigital.net/gomi-guide.html): The app for understanding the Japanese garbage system. Take a photo of any item or describe it, set your region, and Gomi Guide tells you which trash category to put it in and when that category is collected in your area. Available in 8 languages (English, Japanese, Simplified Chinese, Korean, French, German, Russian, Spanish). Free on the App Store with optional Pro subscription.
+- [Brainrot Dash](https://madodigital.net/): Endless runner game with meme characters, power-ups, and leaderboards. Live on the App Store.
+
+## App Store Links
+
+- [Gomi Guide on the App Store](https://apps.apple.com/us/app/gomi-guide/id6760209923): iPhone app. Free to download.
+- [Brainrot Dash on the App Store](https://apps.apple.com/app/brainrot-dash/id6760322199): iPhone app. Free to download.
+
+## What Gomi Guide Helps With
+
+- Sorting any item into the correct Japanese trash category (burnable, non-burnable, recyclable plastic, PET bottles, cans, glass, paper, oversized garbage, hazardous waste, and more)
+- Knowing which days your local ward collects each category
+- Oversized garbage (sodai gomi) walkthroughs covering pickup cost, what to say on the phone, and what info to have ready
+- Apartment move-out guidance for appliances and bulky items that cannot go in the regular trash
+- Multilingual support so non-Japanese-speaking residents and newcomers can sort confidently
+- A new resident guide for people moving to Japan for the first time
+
+## About
+
+- [Mado Digital homepage](https://madodigital.net/): Studio overview, current apps, and what we are working on next.
+- [Contact](mailto:officialmadodigital@gmail.com): Reach the team at officialmadodigital@gmail.com for press, partnerships, or support.
+
+## Legal
+
+- [Privacy Policy](https://madodigital.net/privacy.html): How Mado Digital apps handle user data.
+- [Terms of Service](https://madodigital.net/terms.html): Terms of service for Mado Digital apps.
+
+## Optional
+
+- [App Ads Authorization](https://madodigital.net/app-ads.txt): IAB Tech Lab authorized advertising sellers file for Mado Digital apps.
