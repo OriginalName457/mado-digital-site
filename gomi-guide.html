@@ -43,6 +43,31 @@
             "price": "0",
             "priceCurrency": "USD"
         },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "bestRating": "5",
+            "worstRating": "1",
+            "reviewCount": "2"
+        },
+        "review": [
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Spleen2001" },
+                "datePublished": "2026-05-28",
+                "name": "so helpful",
+                "reviewBody": "Love GomiGuide! Since moving to another city in Japan I didn't know the rules exactly. But the app has honestly been so helpful for getting me on track.",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" }
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "sandwich4eva2006" },
+                "datePublished": "2026-05-27",
+                "name": "Professor",
+                "reviewBody": "This is a thoughtful App that allows you to learn how to recycle correctly in Japan. It also helps you know every type of garbage and recycling. It gives you the complicated pick up schedule, for your exact location. I love the ease of taking a photo of the trash item and then receiving the directions of how to dispose of it. This App is creative, easy to use, and essential for daily life and for the environment!",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" }
+            }
+        ],
         "author": {
             "@type": "Organization",
             "name": "Mado Digital LLC",
@@ -370,6 +395,60 @@
             max-width: 70ch;
         }
 
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0 2rem;
+        }
+        .review-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+        }
+        .review-stars {
+            color: var(--gold);
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.4rem;
+        }
+        .review-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 0 0 0.5rem;
+        }
+        .review-body {
+            color: var(--text-dim);
+            font-size: 0.92rem;
+            line-height: 1.55;
+            margin-bottom: 0.75rem;
+        }
+        .review-meta {
+            color: var(--text-faint);
+            font-size: 0.8rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .review-meta strong {
+            color: var(--text-dim);
+            font-weight: 500;
+        }
+        .rating-summary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .rating-summary .stars {
+            color: var(--gold);
+            letter-spacing: 0.1em;
+        }
+
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -468,6 +547,26 @@
             <li><strong>People moving out</strong> who need to figure out what to do with the fridge and the air conditioner.</li>
             <li><strong>Anyone</strong> who has stood in a konbini holding an empty bottle wondering where the cap goes.</li>
         </ul>
+
+        <h2>What people are saying</h2>
+        <div class="rating-summary">
+            <span class="stars">★★★★★</span>
+            <span><strong style="color: var(--text);">5.0</strong> on the App Store, based on real reviews.</span>
+        </div>
+        <div class="reviews">
+            <div class="review-card">
+                <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <h3 class="review-title">so helpful</h3>
+                <p class="review-body">"Love GomiGuide! Since moving to another city in Japan I didn't know the rules exactly. But the app has honestly been so helpful for getting me on track."</p>
+                <div class="review-meta"><strong>Spleen2001</strong> · App Store · May 2026</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <h3 class="review-title">Professor</h3>
+                <p class="review-body">"This is a thoughtful App that allows you to learn how to recycle correctly in Japan. It also helps you know every type of garbage and recycling. It gives you the complicated pick up schedule, for your exact location. I love the ease of taking a photo of the trash item and then receiving the directions of how to dispose of it. This App is creative, easy to use, and essential for daily life and for the environment!"</p>
+                <div class="review-meta"><strong>sandwich4eva2006</strong> · App Store · May 2026</div>
+            </div>
+        </div>
 
         <h2 id="faq">FAQ</h2>
 
