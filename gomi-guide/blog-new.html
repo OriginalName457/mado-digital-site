@@ -60,8 +60,8 @@
         <label>One-line summary <span class="hint">(shows on the blog list)</span></label>
         <input id="excerpt" placeholder="A bicycle is oversized garbage, but there is a registration sticker to deal with first.">
 
-        <label>Header image <span class="hint">(optional — a path like /blog/img/bicycle.jpg; upload that image into /blog/img/ too)</span></label>
-        <input id="image" placeholder="/blog/img/bicycle.jpg">
+        <label>Header image <span class="hint">(optional — a path like /gomi-guide/blog/img/bicycle.jpg; upload that image into /gomi-guide/blog/img/ too)</span></label>
+        <input id="image" placeholder="/gomi-guide/blog/img/bicycle.jpg">
 
         <label>Body <span class="hint">— blank line between paragraphs. Start a line with ## for a heading, - for a bullet, 1. for a numbered step. Use **text** for bold.</span></label>
         <textarea id="body" placeholder="A bike does not fit in any bag, so it is sodai gomi.
@@ -83,8 +83,8 @@ Call your ward's oversized garbage center and tell them you have one bicycle.
         <div class="steps">
             To publish a finished post:
             <ol>
-                <li>Download the post <code>.html</code> and upload it into the <code>/blog/</code> folder on Porkbun.</li>
-                <li>Download the updated <code>posts.json</code> and upload it to <code>/blog/</code>, replacing the old one.</li>
+                <li>Download the post <code>.html</code> and upload it into the <code>/gomi-guide/blog/</code> folder on Porkbun.</li>
+                <li>Download the updated <code>posts.json</code> and upload it to <code>/gomi-guide/blog/</code>, replacing the old one.</li>
                 <li>That is it. The new post appears on the blog and on the Gomi Guide page automatically.</li>
             </ol>
         </div>
@@ -141,7 +141,7 @@ Call your ward's oversized garbage center and tell them you have one bicycle.
             const display=fmtDate(iso);
             const read=readTime(bodyRaw);
             const bodyHtml=bodyToHtml(bodyRaw);
-            const url='https://madodigital.net/blog/'+slug+'.html';
+            const url='https://madodigital.net/gomi-guide/blog/'+slug+'.html';
             const html=`<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -165,7 +165,7 @@ Call your ward's oversized garbage center and tell them you have one bicycle.
 </head>
 <body>
     <div class="container">
-        <a href="/blog.html" class="back-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> All guides</a>
+        <a href="/gomi-guide/gomi-guide/blog/" class="back-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> All guides</a>
         <div class="cat">${esc(cat)}</div>
         <h1>${esc(title)}</h1>
         <div class="meta">${display} · ${read}</div>
@@ -177,7 +177,7 @@ Call your ward's oversized garbage center and tell them you have one bicycle.
         </a>
         <footer>
             <div>&copy; 2026 Mado Digital LLC</div>
-            <div><a href="/gomi-guide.html">Gomi Guide</a><a href="/blog.html">Guides</a></div>
+            <div><a href="/gomi-guide.html">Gomi Guide</a><a href="/gomi-guide/gomi-guide/blog/">Guides</a></div>
         </footer>
     </div>
 </body>
@@ -191,7 +191,7 @@ Call your ward's oversized garbage center and tell them you have one bicycle.
         function setStatus(m){ document.getElementById('status').textContent=m; }
 
         function downloadPost(){
-            try{ const o=build(); dl(o.slug+'.html', o.html, 'text/html'); document.getElementById('srcout').textContent=o.html; setStatus('Saved '+o.slug+'.html — upload it to /blog/'); }
+            try{ const o=build(); dl(o.slug+'.html', o.html, 'text/html'); document.getElementById('srcout').textContent=o.html; setStatus('Saved '+o.slug+'.html — upload it to /gomi-guide/blog/'); }
             catch(e){ setStatus(e.message); }
         }
         function preview(){
@@ -202,11 +202,11 @@ Call your ward's oversized garbage center and tell them you have one bicycle.
             try{
                 const o=build();
                 let posts=[];
-                try{ posts=await fetch('/blog/posts.json',{cache:'no-store'}).then(r=>r.json()); }catch(_){}
+                try{ posts=await fetch('/gomi-guide/blog/posts.json',{cache:'no-store'}).then(r=>r.json()); }catch(_){}
                 posts=posts.filter(p=>p.slug!==o.slug);
                 posts.unshift(o.entry);
                 dl('posts.json', JSON.stringify(posts,null,2), 'application/json');
-                setStatus('Saved posts.json with '+posts.length+' posts — upload it to /blog/ (replace the old one).');
+                setStatus('Saved posts.json with '+posts.length+' posts — upload it to /gomi-guide/blog/ (replace the old one).');
             }catch(e){ setStatus(e.message); }
         }
     </script>

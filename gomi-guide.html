@@ -242,7 +242,7 @@
         <p>Short, practical walkthroughs for the parts of the system that trip people up. No fluff, just what to actually do.</p>
         <div class="blog-head">
             <span></span>
-            <a class="all" href="/blog.html">All guides →</a>
+            <a class="all" href="/gomi-guide/gomi-guide/blog/">All guides →</a>
         </div>
         <div class="post-list" id="postList"></div>
 
@@ -311,12 +311,12 @@
         })();
 
         // Blog posts pulled from the shared manifest so new ones show up automatically.
-        fetch('/blog/posts.json').then(r => r.json()).then(posts => {
+        fetch('/gomi-guide/blog/posts.json').then(r => r.json()).then(posts => {
             const list = document.getElementById('postList');
             const today = new Date().toISOString().slice(0, 10);
             posts = posts.filter(p => !p.publish || p.publish <= today).sort((a, b) => (b.publish || '').localeCompare(a.publish || ''));
             list.innerHTML = posts.slice(0, 3).map(p => `
-                <a class="post-card" href="/blog/${p.slug}.html">
+                <a class="post-card" href="/gomi-guide/blog/${p.slug}.html">
                     ${p.image ? `<img class="thumb" src="${p.image}" alt="">` : ''}
                     <div class="pmeta">${p.date} · ${p.readingTime}</div>
                     <h3>${p.title}</h3>
