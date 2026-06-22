@@ -313,8 +313,10 @@
         // Blog posts pulled from the shared manifest so new ones show up automatically.
         fetch('/gomi-guide/blog/posts.json').then(r => r.json()).then(posts => {
             const list = document.getElementById('postList');
-            const today = new Date().toISOString().slice(0, 10);
-            posts = posts.filter(p => !p.publish || p.publish <= today).sort((a, b) => (b.publish || '').localeCompare(a.publish || ''));
+            const now = Date.now(), todayStr = new Date().toISOString().slice(0, 10);
+            const isLive = p => p.publishAt ? new Date(p.publishAt).getTime() <= now : (!p.publish || p.publish <= todayStr);
+            const sortKey = p => p.publishAt || (p.publish ? p.publish + 'T00:00:00Z' : '');
+            posts = posts.filter(isLive).sort((a, b) => sortKey(b).localeCompare(sortKey(a)));
             list.innerHTML = posts.slice(0, 3).map(p => `
                 <a class="post-card" href="/gomi-guide/blog/${p.slug}.html">
                     ${p.image ? `<img class="thumb" src="${p.image}" alt="">` : ''}
