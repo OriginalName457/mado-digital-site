@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New post — Gomi Guide blog studio</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='22' width='100' height='100' fill='%232f9e54'/><path d='M50 24a26 26 0 1 0 0 52 26 26 0 0 0 0-52zm0 10l7 12H43z' fill='white'/><circle cx='50' cy='60' r='6' fill='white'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#f4f9f1;--surface:#fff;--green:#2f9e54;--green-deep:#1c6b39;--green-soft:#e7f4ea;--ink:#16241c;--ink-dim:#46584d;--ink-faint:#7c8a81;--border:#e0ebdd;--shadow:0 14px 40px rgba(22,70,40,.08)}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+        .wrap{max-width:780px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+        h1{font-family:'Space Grotesk',sans-serif;font-size:1.9rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.4rem}
+        .sub{color:var(--ink-dim);margin-bottom:2rem;font-size:.97rem}
+        label{display:block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.85rem;margin:1.1rem 0 .4rem;color:var(--ink)}
+        .hint{font-weight:400;color:var(--ink-faint);font-size:.8rem}
+        input,textarea,select{width:100%;font-family:'Inter',sans-serif;font-size:.95rem;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;transition:border-color .2s}
+        input:focus,textarea:focus,select:focus{outline:none;border-color:var(--green)}
+        textarea{min-height:280px;line-height:1.6;resize:vertical;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9rem}
+        .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+        @media(max-width:560px){.row{grid-template-columns:1fr}}
+        .btns{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+        button{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.92rem;border:1px solid transparent;border-radius:11px;padding:.75rem 1.3rem;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s}
+        .primary{background:var(--green);color:#fff;box-shadow:0 8px 22px rgba(47,158,84,.28)}
+        .primary:hover{transform:translateY(-2px)}
+        .ghost{background:var(--surface);color:var(--green-deep);border-color:var(--border)}
+        .ghost:hover{border-color:var(--green)}
+        .status{margin-top:1rem;font-size:.9rem;color:var(--green-deep);min-height:1.2em}
+        .steps{background:var(--green-soft);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;margin-top:2rem;font-size:.92rem;color:var(--green-deep)}
+        .steps ol{margin:.5rem 0 0 1.1rem}.steps li{margin-bottom:.35rem}
+        code{background:#fff;border:1px solid var(--border);border-radius:5px;padding:.05rem .35rem;font-size:.85em}
+        details{margin-top:1.6rem}
+        summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--green-deep)}
+        pre{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;overflow:auto;font-size:.78rem;line-height:1.5;margin-top:.8rem;max-height:320px}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h1>Blog studio</h1>
+        <p class="sub">Write a post here, then export the files and upload them. This page is just a tool. It is not linked anywhere public and is marked noindex.</p>
+
+        <label>Title</label>
+        <input id="title" placeholder="How to throw away a bicycle in Japan">
+
+        <div class="row">
+            <div>
+                <label>Category <span class="hint">(small label above the title)</span></label>
+                <input id="category" placeholder="Oversized garbage">
+            </div>
+            <div>
+                <label>Date</label>
+                <input id="date" type="date">
+            </div>
+        </div>
+
+        <label>One-line summary <span class="hint">(shows on the blog list)</span></label>
+        <input id="excerpt" placeholder="A bicycle is oversized garbage, but there is a registration sticker to deal with first.">
+
+        <label>Header image <span class="hint">(optional — a path like /blog/img/bicycle.jpg; upload that image into /blog/img/ too)</span></label>
+        <input id="image" placeholder="/blog/img/bicycle.jpg">
+
+        <label>Body <span class="hint">— blank line between paragraphs. Start a line with ## for a heading, - for a bullet, 1. for a numbered step. Use **text** for bold.</span></label>
+        <textarea id="body" placeholder="A bike does not fit in any bag, so it is sodai gomi.
+
+## Book the pickup
+Call your ward's oversized garbage center and tell them you have one bicycle.
+
+## Deal with the防犯登録
+- Cancel the bike's registration first
+- Bring ID to the police box or the shop you bought it from"></textarea>
+
+        <div class="btns">
+            <button class="primary" onclick="downloadPost()">Download post .html</button>
+            <button class="ghost" onclick="downloadManifest()">Download updated posts.json</button>
+            <button class="ghost" onclick="preview()">Preview in new tab</button>
+        </div>
+        <div class="status" id="status"></div>
+
+        <div class="steps">
+            To publish a finished post:
+            <ol>
+                <li>Download the post <code>.html</code> and upload it into the <code>/blog/</code> folder on Porkbun.</li>
+                <li>Download the updated <code>posts.json</code> and upload it to <code>/blog/</code>, replacing the old one.</li>
+                <li>That is it. The new post appears on the blog and on the Gomi Guide page automatically.</li>
+            </ol>
+        </div>
+
+        <details>
+            <summary>See the generated post HTML</summary>
+            <pre id="srcout">Fill in the form, then this shows the file.</pre>
+        </details>
+    </div>
+
+    <script>
+        // default date = today
+        document.getElementById('date').valueAsDate = new Date();
+
+        function slugify(s){ return s.toLowerCase().trim().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,''); }
+        function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+        function inline(s){ return esc(s).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>'); }
+        function fmtDate(iso){ if(!iso) return ''; const d=new Date(iso+'T00:00:00'); return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); }
+        function readTime(body){ const w=body.trim().split(/\s+/).filter(Boolean).length; return Math.max(1,Math.round(w/200))+' min read'; }
+
+        function bodyToHtml(raw){
+            const lines = raw.replace(/\r/g,'').split('\n');
+            let html='', list=null;
+            const closeList=()=>{ if(list){ html+='</'+list+'>\n'; list=null; } };
+            let para=[];
+            const flush=()=>{ if(para.length){ html+='<p>'+inline(para.join(' '))+'</p>\n'; para=[]; } };
+            for(const ln of lines){
+                const t=ln.trim();
+                if(t===''){ flush(); closeList(); continue; }
+                if(t.startsWith('## ')){ flush(); closeList(); html+='<h2>'+inline(t.slice(3))+'</h2>\n'; continue; }
+                let m;
+                if((m=t.match(/^[-*]\s+(.*)/))){ flush(); if(list!=='ul'){ closeList(); html+='<ul>\n'; list='ul'; } html+='<li>'+inline(m[1])+'</li>\n'; continue; }
+                if((m=t.match(/^\d+\.\s+(.*)/))){ flush(); if(list!=='ol'){ closeList(); html+='<ol>\n'; list='ol'; } html+='<li>'+inline(m[1])+'</li>\n'; continue; }
+                if(list) closeList();
+                para.push(t);
+            }
+            flush(); closeList();
+            return html.trim();
+        }
+
+        const CSS = `*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}:root{--bg:#f4f9f1;--surface:#fff;--green:#2f9e54;--green-deep:#1c6b39;--green-soft:#e7f4ea;--ink:#16241c;--ink-dim:#46584d;--ink-faint:#7c8a81;--border:#e0ebdd;--shadow:0 14px 40px rgba(22,70,40,.08)}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}body::before{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradient(at 15% 0%,rgba(47,158,84,.10),transparent 45%)}.container{max-width:680px;margin:0 auto;padding:3rem 1.5rem 5rem}a{color:inherit}::selection{background:var(--green);color:#fff}.back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--ink-faint);text-decoration:none;font-size:.875rem;margin-bottom:2.5rem;transition:color .2s}.back-link:hover{color:var(--green)}.cat{font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:.7rem}h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,5vw,2.7rem);font-weight:700;line-height:1.12;color:var(--ink);letter-spacing:-.02em;margin-bottom:.8rem}.meta{color:var(--ink-faint);font-size:.9rem;margin-bottom:1.5rem}.banner{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin-bottom:2.4rem;box-shadow:var(--shadow);border:1px solid var(--border)}h2{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:600;color:var(--ink);margin:2.4rem 0 .9rem}p{color:var(--ink-dim);margin-bottom:1.2rem}ol,ul{color:var(--ink-dim);margin:0 0 1.4rem;padding-left:1.4rem}li{margin-bottom:.6rem}strong{color:var(--ink);font-weight:600}.cta{display:block;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem 1.7rem;margin-top:2.6rem;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:transform .2s,border-color .2s}.cta:hover{transform:translateY(-3px);border-color:var(--green)}.cta strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.05rem;margin-bottom:.25rem}.cta span{color:var(--ink-dim);font-size:.93rem}footer{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--border);color:var(--ink-faint);font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}footer a{color:var(--ink-dim);text-decoration:none;margin-left:1rem}footer a:hover{color:var(--green)}`;
+
+        const FAV = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='22' width='100' height='100' fill='%232f9e54'/><path d='M50 24a26 26 0 1 0 0 52 26 26 0 0 0 0-52zm0 10l7 12H43z' fill='white'/><circle cx='50' cy='60' r='6' fill='white'/></svg>";
+
+        function build(){
+            const title=document.getElementById('title').value.trim();
+            const cat=document.getElementById('category').value.trim()||'Guide';
+            const iso=document.getElementById('date').value;
+            const excerpt=document.getElementById('excerpt').value.trim();
+            const img=document.getElementById('image').value.trim();
+            const bodyRaw=document.getElementById('body').value;
+            if(!title){ throw new Error('Add a title first.'); }
+            const slug=slugify(title);
+            const display=fmtDate(iso);
+            const read=readTime(bodyRaw);
+            const bodyHtml=bodyToHtml(bodyRaw);
+            const url='https://madodigital.net/blog/'+slug+'.html';
+            const html=`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${esc(title)} — Gomi Guide</title>
+    <meta name="description" content="${esc(excerpt)}">
+    <meta property="og:title" content="${esc(title)}">
+    <meta property="og:description" content="${esc(excerpt)}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="${url}">
+    <link rel="canonical" href="${url}">
+    <link rel="icon" href="${FAV}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "BlogPosting", "headline": ${JSON.stringify(title)}, "datePublished": "${iso}", "author": { "@type": "Organization", "name": "Mado Digital LLC" }, "publisher": { "@type": "Organization", "name": "Mado Digital LLC" }, "mainEntityOfPage": "${url}" }
+    <\/script>
+    <style>${CSS}</style>
+</head>
+<body>
+    <div class="container">
+        <a href="/blog.html" class="back-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> All guides</a>
+        <div class="cat">${esc(cat)}</div>
+        <h1>${esc(title)}</h1>
+        <div class="meta">${display} · ${read}</div>
+        ${img ? `<img class="banner" src="${img}" alt="${esc(title)}">` : ''}
+        ${bodyHtml}
+        <a class="cta" href="https://apps.apple.com/us/app/gomi-guide/id6760209923" target="_blank" rel="noopener">
+            <strong>Get the answer in the app</strong>
+            <span>Gomi Guide sorts any item for your exact ward and shows the next pickup day. Free on the App Store.</span>
+        </a>
+        <footer>
+            <div>&copy; 2026 Mado Digital LLC</div>
+            <div><a href="/gomi-guide.html">Gomi Guide</a><a href="/blog.html">Guides</a></div>
+        </footer>
+    </div>
+</body>
+</html>`;
+            const entry={ slug, title, date:display, readingTime:read, excerpt };
+            if (img) entry.image = img;
+            return { slug, html, entry };
+        }
+
+        function dl(name, text, type){ const b=new Blob([text],{type:type||'text/plain'}); const u=URL.createObjectURL(b); const a=document.createElement('a'); a.href=u; a.download=name; a.click(); URL.revokeObjectURL(u); }
+        function setStatus(m){ document.getElementById('status').textContent=m; }
+
+        function downloadPost(){
+            try{ const o=build(); dl(o.slug+'.html', o.html, 'text/html'); document.getElementById('srcout').textContent=o.html; setStatus('Saved '+o.slug+'.html — upload it to /blog/'); }
+            catch(e){ setStatus(e.message); }
+        }
+        function preview(){
+            try{ const o=build(); const w=window.open(); w.document.write(o.html); w.document.close(); }
+            catch(e){ setStatus(e.message); }
+        }
+        async function downloadManifest(){
+            try{
+                const o=build();
+                let posts=[];
+                try{ posts=await fetch('/blog/posts.json',{cache:'no-store'}).then(r=>r.json()); }catch(_){}
+                posts=posts.filter(p=>p.slug!==o.slug);
+                posts.unshift(o.entry);
+                dl('posts.json', JSON.stringify(posts,null,2), 'application/json');
+                setStatus('Saved posts.json with '+posts.length+' posts — upload it to /blog/ (replace the old one).');
+            }catch(e){ setStatus(e.message); }
+        }
+    </script>
+</body>
+</html>

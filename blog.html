@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guides — Gomi Guide by Mado Digital</title>
+    <meta name="description" content="Practical guides for sorting garbage and recycling in Japan, from the team behind Gomi Guide.">
+    <meta property="og:title" content="Guides — Gomi Guide">
+    <meta property="og:description" content="Practical guides for sorting garbage and recycling in Japan.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://madodigital.net/blog.html">
+    <link rel="canonical" href="https://madodigital.net/blog.html">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='22' width='100' height='100' fill='%232f9e54'/><path d='M50 24a26 26 0 1 0 0 52 26 26 0 0 0 0-52zm0 10l7 12H43z' fill='white'/><circle cx='50' cy='60' r='6' fill='white'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#f4f9f1;--surface:#fff;--green:#2f9e54;--green-deep:#1c6b39;--green-soft:#e7f4ea;--ink:#16241c;--ink-dim:#46584d;--ink-faint:#7c8a81;--border:#e0ebdd;--shadow:0 14px 40px rgba(22,70,40,.08)}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+        body::before{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradient(at 15% 0%,rgba(47,158,84,.10),transparent 45%)}
+        .container{max-width:760px;margin:0 auto;padding:3rem 1.5rem 5rem}
+        a{color:inherit}::selection{background:var(--green);color:#fff}
+        .back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--ink-faint);text-decoration:none;font-size:.875rem;margin-bottom:2.5rem;transition:color .2s}
+        .back-link:hover{color:var(--green)}
+        .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:.5rem}
+        h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,2.9rem);font-weight:700;line-height:1.1;color:var(--ink);letter-spacing:-.02em;margin-bottom:.7rem}
+        .intro{color:var(--ink-dim);font-size:1.05rem;max-width:60ch;margin-bottom:2.6rem}
+        .post-list{display:grid;gap:1rem}
+        .post-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem 1.7rem;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:transform .2s,border-color .2s}
+        .post-card:hover{transform:translateY(-3px);border-color:var(--green)}
+        .post-card .thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;margin-bottom:1.1rem;display:block;border:1px solid var(--border)}
+        .post-card .pmeta{font-size:.8rem;color:var(--green-deep);font-weight:600;letter-spacing:.04em;margin-bottom:.45rem}
+        .post-card h2{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--ink);margin-bottom:.4rem;letter-spacing:-.01em}
+        .post-card p{color:var(--ink-dim);font-size:.96rem;margin:0}
+        footer{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--border);color:var(--ink-faint);font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+        footer a{color:var(--ink-dim);text-decoration:none;margin-left:1rem}footer a:hover{color:var(--green)}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/gomi-guide.html" class="back-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Gomi Guide</a>
+        <div class="eyebrow">Gomi Guide</div>
+        <h1>Guides for Japanese garbage</h1>
+        <p class="intro">Short, practical walkthroughs for the parts of the sorting system that actually trip people up. Written by the team that makes the app.</p>
+        <div class="post-list" id="postList"></div>
+        <footer>
+            <div>&copy; 2026 Mado Digital LLC</div>
+            <div><a href="/">Home</a><a href="/gomi-guide.html">Gomi Guide</a></div>
+        </footer>
+    </div>
+    <script>
+        fetch('/blog/posts.json').then(r => r.json()).then(posts => {
+            const today = new Date().toISOString().slice(0, 10);
+            posts = posts.filter(p => !p.publish || p.publish <= today).sort((a, b) => (b.publish || '').localeCompare(a.publish || ''));
+            document.getElementById('postList').innerHTML = posts.map(p => `
+                <a class="post-card" href="/blog/${p.slug}.html">
+                    ${p.image ? `<img class="thumb" src="${p.image}" alt="">` : ''}
+                    <div class="pmeta">${p.date} · ${p.readingTime}</div>
+                    <h2>${p.title}</h2>
+                    <p>${p.excerpt}</p>
+                </a>`).join('');
+        }).catch(() => { document.getElementById('postList').innerHTML = '<p>Could not load posts.</p>'; });
+    </script>
+</body>
+</html>
