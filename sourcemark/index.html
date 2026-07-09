@@ -4,243 +4,1880 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sourcemark — Know any business, with the receipts</title>
-  <meta name="description" content="Sourcemark is KYB (Know Your Business) infrastructure for developers. Submit a URL and get a scored merchant-risk verdict where every signal cites its source — sanctions, PEPs, abuse feeds, domain intelligence, adverse media. 13 official sources, one API.">
-  <meta name="keywords" content="KYB, know your business, merchant risk, business verification, sanctions screening, PEP screening, due diligence API, fintech compliance, onboarding risk, Sourcemark">
-
+  <meta name="description" content="Sourcemark is KYB (Know Your Business) infrastructure for developers. Submit a URL and get a defensible, source-cited risk verdict in seconds — sanctions, PEPs, business registries across 140+ jurisdictions, SEC EDGAR, threat intel, adverse media. 13 sources, one API.">
+  <meta name="keywords" content="KYB, know your business, merchant risk, business verification, sanctions screening, PEP screening, due diligence API, fintech compliance, Sourcemark">
   <meta property="og:title" content="Sourcemark — Know any business, with the receipts">
-  <meta property="og:description" content="KYB infrastructure for devs. Submit a URL, get a scored risk verdict where every signal cites its source. Sanctions, PEPs, abuse, domain intel, adverse media — 13 sources, one API.">
+  <meta property="og:description" content="KYB infrastructure for devs. Submit a URL, get a defensible risk verdict where every rule links back to the record that fired it.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://madodigital.net/sourcemark/">
   <meta property="og:image" content="https://madodigital.net/sourcemark/icon.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sourcemark — Know any business, with the receipts">
-  <meta name="twitter:description" content="KYB infrastructure for devs. Submit a URL, get a scored risk verdict where every signal cites its source.">
-
+  <meta name="twitter:description" content="KYB infrastructure for devs. Every verdict comes with its receipts.">
   <link rel="canonical" href="https://madodigital.net/sourcemark/">
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Sourcemark",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "description": "Sourcemark is KYB (Know Your Business) infrastructure. Submit a business URL and receive a scored merchant-risk verdict in which every contributing signal cites its source — sanctions lists, PEP data, abuse feeds, domain intelligence and adverse media across 13 official sources.",
-    "url": "https://madodigital.net/sourcemark/",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "author": { "@type": "Organization", "name": "Mado Digital LLC", "url": "https://madodigital.net" },
-    "publisher": { "@type": "Organization", "name": "Mado Digital LLC", "url": "https://madodigital.net" }
-  }
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Sourcemark","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Mado Digital LLC","url":"https://madodigital.net"}}
   </script>
-
   <style>
-    :root{
-      --bg:#0B1220; --bg-soft:#0f1728; --panel:#131c2f; --line:#1f2b40;
-      --text:#e7ecf3; --muted:#8ea0b9; --brand:#11D06F; --brand-soft:#0f9c55;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
-      line-height:1.6;-webkit-font-smoothing:antialiased;
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-    h1,h2,h3,.mono{font-family:'Space Grotesk','Inter',sans-serif}
-    .mono{font-family:ui-monospace,'JetBrains Mono',monospace}
+*,::before,::after{box-sizing:border-box;border-width:0;border-style:solid}
+html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4}
+body{margin:0;line-height:inherit}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}
+p,figure,blockquote,dl,dd{margin:0}
+a{color:inherit;text-decoration:inherit}
+button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}
+button,select{text-transform:none}
+button,[type=button],[type=submit]{-webkit-appearance:button;background-color:transparent;background-image:none;cursor:pointer}
+ol,ul,menu{list-style:none;margin:0;padding:0}
+img,svg,video,canvas{display:block;vertical-align:middle}
+img,video{max-width:100%;height:auto}
+/* kyb-scanner landing — ground-up rebuild
+ * Inspired by Middesk / Alloy / Sardine visual language, with our own marks:
+ *   - Dark navy hero (#0B1220) with a real rendered verdict card as the centerpiece
+ *   - Data-source logo band (honest move — we have no customers yet, but we
+ *     have provenance, which is what the buyer actually trusts)
+ *   - Emerald accent (#26D472) doubles as our "verdict-clear" tier color
+ *   - PLG-first messaging: code sample, free tier prominent, sandbox keys
+ * Respects prefers-reduced-motion.
+ */
 
-    /* nav */
-    header{position:sticky;top:0;z-index:20;background:rgba(11,18,32,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .nav{height:60px;display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:18px}
-    .badge{width:28px;height:28px;border-radius:7px;background:var(--brand);color:var(--bg);
-      display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-family:ui-monospace,monospace}
-    .nav-links{display:flex;align-items:center;gap:22px;font-size:14px}
-    .nav-links a{color:var(--muted)}.nav-links a:hover{color:var(--text)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 18px;border-radius:9px;
-      font-weight:600;font-size:14px;transition:.15s;white-space:nowrap}
-    .btn-primary{background:var(--brand);color:#04210f}.btn-primary:hover{background:#16e07c}
-    .btn-ghost{border:1px solid var(--line);color:var(--text)}.btn-ghost:hover{border-color:#3a4a66}
+:root {
+  /* surfaces */
+  --bg-page:        #FFFFFF;
+  --bg-alt:         #F7F8FA;
+  --bg-dark:        #0B1220;
+  --bg-dark-2:      #111A2E;
+  --bg-code:        #0F172A;
 
-    /* hero */
-    .hero{padding:88px 0 72px;background:radial-gradient(1100px 480px at 78% -8%,rgba(17,208,111,.10),transparent 60%)}
-    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-    .eyebrow{font-family:'Space Grotesk';font-weight:600;letter-spacing:.16em;font-size:12px;color:var(--brand);
-      text-transform:uppercase;display:flex;align-items:center;gap:9px}
-    .dot{width:7px;height:7px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px rgba(17,208,111,.18)}
-    h1{font-size:56px;line-height:1.02;font-weight:700;letter-spacing:-.02em;margin:18px 0 20px}
-    h1 .g{color:var(--brand)}
-    .lead{font-size:18px;color:#b7c2d4;max-width:520px}
-    .cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
-    .sub{margin-top:16px;font-size:13px;color:var(--muted)}
+  /* text on light */
+  --fg:             #0B1220;
+  --fg-muted:       #475569;     /* slate-600 */
+  --fg-soft:        #64748B;     /* slate-500 */
+  --fg-faint:       #94A3B8;     /* slate-400 */
 
-    /* verdict card */
-    .card{background:linear-gradient(180deg,#fff,#f6f8fb);color:#0b1220;border-radius:16px;overflow:hidden;
-      box-shadow:0 30px 60px -20px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.06)}
-    .card-top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #eef1f6}
-    .live{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#0b1220}
-    .live .dot{background:var(--brand)}
-    .scn{font-family:ui-monospace,monospace;font-size:12px;color:#94a3b8}
-    .verdict{display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(17,208,111,.06)}
-    .risk-l{display:flex;flex-direction:column;gap:2px}
-    .risk-l b{font-family:'Space Grotesk';font-size:15px}
-    .risk-l span{font-size:13px;color:#64748b}
-    .score{text-align:right}.score .n{font-family:'Space Grotesk';font-weight:700;font-size:34px;line-height:1}
-    .score .of{color:#94a3b8;font-size:14px}.score .lbl{font-size:11px;color:#94a3b8;letter-spacing:.04em}
-    .row{display:flex;align-items:center;gap:12px;padding:12px 18px;border-top:1px solid #eef1f6;font-size:14px}
-    .chip{font-family:ui-monospace,monospace;font-weight:700;font-size:12px;min-width:42px;text-align:center;
-      padding:4px 8px;border-radius:6px;background:#e8f8ef;color:#0f9c55}
-    .row .src{margin-left:auto;font-family:ui-monospace,monospace;font-size:11px;color:#94a3b8;text-transform:uppercase}
+  /* text on dark */
+  --fg-on-dark:     #FFFFFF;
+  --fg-on-dark-muted: rgba(255,255,255,0.72);
+  --fg-on-dark-faint: rgba(255,255,255,0.48);
 
-    /* sections */
-    section{padding:64px 0}
-    .sec-h{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:600;font-family:'Space Grotesk'}
-    .sec-t{font-size:32px;font-weight:700;letter-spacing:-.01em;margin:10px 0 8px}
-    .sec-d{color:#b7c2d4;max-width:640px}
-    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
-    .feat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
-    .feat h3{font-size:17px;margin-bottom:7px}
-    .feat p{color:#9fb0c6;font-size:14.5px}
-    .feat .ic{width:38px;height:38px;border-radius:9px;background:rgba(17,208,111,.12);color:var(--brand);
-      display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:19px}
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
-    .step{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:22px}
-    .step .k{font-family:ui-monospace,monospace;color:var(--brand);font-weight:700;font-size:13px}
-    .step h3{font-size:16px;margin:8px 0 6px}.step p{color:#9fb0c6;font-size:14px}
+  /* borders */
+  --border:         #E2E8F0;     /* slate-200 */
+  --border-strong:  #CBD5E1;     /* slate-300 */
+  --border-on-dark: rgba(255,255,255,0.10);
 
-    .band{background:linear-gradient(180deg,var(--bg-soft),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
-    .band h2{font-size:34px;font-weight:700;letter-spacing:-.01em}
-    .band p{color:#b7c2d4;margin:12px auto 26px;max-width:520px}
+  /* brand */
+  --accent:         #26D472;
+  --accent-dk:      #16A85B;
+  --accent-soft:    rgba(38, 212, 114, 0.12);
 
-    footer{padding:38px 0;color:var(--muted);font-size:14px}
-    .foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-    .foot a{color:var(--muted)}.foot a:hover{color:var(--text)}
-    .foot-links{display:flex;gap:20px;flex-wrap:wrap}
+  /* tiers */
+  --tier-low:       #26D472;
+  --tier-medium:    #F59E0B;
+  --tier-high:      #F97316;
+  --tier-critical:  #EF4444;
 
-    @media(max-width:840px){
-      .grid{grid-template-columns:1fr;gap:40px}h1{font-size:42px}
-      .cards,.steps{grid-template-columns:1fr}.nav-links a:not(.btn){display:none}
-    }
+  /* shadows */
+  --shadow-sm:      0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-card:    0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.05);
+  --shadow-lift:    0 8px 24px rgba(15, 23, 42, 0.06), 0 24px 64px rgba(15, 23, 42, 0.08);
+  --shadow-card-on-dark: 0 0 0 1px rgba(255,255,255,0.06), 0 20px 60px rgba(0,0,0,0.45), 0 0 80px rgba(38,212,114,0.10);
 
-    /* --- scroll-reveal animation layer (matches the app landing) --- */
-    [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-    [data-reveal].is-visible{opacity:1;transform:none}
-    .d1{transition-delay:.09s}.d2{transition-delay:.18s}.d3{transition-delay:.27s}.d4{transition-delay:.36s}
-    .cards .feat:nth-child(2){transition-delay:.1s}.cards .feat:nth-child(3){transition-delay:.2s}.cards .feat:nth-child(4){transition-delay:.3s}
-    .steps .step:nth-child(2){transition-delay:.12s}.steps .step:nth-child(3){transition-delay:.24s}
-    .card .row{opacity:0;transform:translateX(12px);transition:opacity .5s ease,transform .5s ease}
-    .card.is-visible .row{opacity:1;transform:none}
-    .card.is-visible .row:nth-child(3){transition-delay:.12s}.card.is-visible .row:nth-child(4){transition-delay:.24s}.card.is-visible .row:nth-child(5){transition-delay:.36s}.card.is-visible .row:nth-child(6){transition-delay:.48s}
-    @media(prefers-reduced-motion:reduce){[data-reveal],.card .row{opacity:1!important;transform:none!important;transition:none!important}}
+  /* radii */
+  --radius-sm:      6px;
+  --radius:         10px;
+  --radius-lg:      14px;
+  --radius-xl:      20px;
+}
+
+body.landing-body {
+  background: var(--bg-page);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-feature-settings: 'cv02', 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;            /* hard safety: no horizontal scroll, ever */
+}
+/* Shared container — used by nav, hero, sections, footer, src-band.
+ * 1240px gives more breathing room at desktop widths than the prior 1200;
+ * 32px side padding keeps content off the edges at every breakpoint. */
+.lp-nav__inner,
+.hero__inner,
+.section__inner,
+.src-band__inner,
+.lp-footer__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+/* ============================================================
+ * Typography primitives
+ * ============================================================ */
+.lp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-dk);
+}
+.lp-eyebrow--on-dark { color: var(--accent); }
+.lp-eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.lp-h1 {
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+.lp-h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.lp-h3 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.lp-lede {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+.lp-lede--on-dark { color: var(--fg-on-dark-muted); }
+
+/* Section numbering (01 / 02 / 03 …) */
+.lp-section-num {
+  display: inline-block;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent-dk);
+  margin-right: 8px;
+}
+
+/* ============================================================
+ * Sticky nav
+ * ============================================================ */
+.lp-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: saturate(150%) blur(14px);
+  -webkit-backdrop-filter: saturate(150%) blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.lp-nav__inner {
+  /* max-width / padding inherited from shared container rule */
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.lp-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--fg);
+  text-decoration: none;
+}
+.lp-brand__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--bg-dark);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  position: relative;
+}
+.lp-brand__mark::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
+  opacity: 0.25;
+  z-index: -1;
+}
+.lp-nav__links {
+  display: none;
+  align-items: center;
+  gap: 26px;
+}
+@media (min-width: 768px) {
+  .lp-nav__links { display: flex; }
+}
+.lp-nav__link {
+  font-size: 14px;
+  color: var(--fg-muted);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+.lp-nav__link:hover { color: var(--fg); }
+.lp-nav__cta {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-dark);
+  color: var(--fg-on-dark);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.lp-nav__cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(11, 18, 32, 0.20);
+}
+
+/* ============================================================
+ * Buttons
+ * ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+  white-space: nowrap;
+}
+.btn--primary {
+  background: var(--accent);
+  color: var(--bg-dark);
+  box-shadow: 0 2px 8px rgba(38, 212, 114, 0.25), 0 12px 32px rgba(38, 212, 114, 0.15);
+}
+.btn--primary:hover {
+  transform: translateY(-1px);
+  background: var(--accent-dk);
+  color: var(--fg-on-dark);
+  box-shadow: 0 4px 16px rgba(38, 212, 114, 0.35), 0 16px 40px rgba(38, 212, 114, 0.22);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--border-strong);
+}
+.btn--ghost:hover {
+  background: var(--bg-alt);
+  border-color: var(--fg-faint);
+}
+.btn--ghost-on-dark {
+  background: transparent;
+  color: var(--fg-on-dark);
+  border: 1px solid var(--border-on-dark);
+}
+.btn--ghost-on-dark:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.20);
+}
+.btn__arrow {
+  width: 14px; height: 14px;
+  transition: transform 150ms ease;
+}
+.btn:hover .btn__arrow { transform: translateX(2px); }
+
+/* ============================================================
+ * Hero (dark navy)
+ * ============================================================ */
+.hero {
+  position: relative;
+  padding: 140px 0 100px;
+  background:
+    radial-gradient(ellipse 800px 600px at 80% 0%, rgba(38, 212, 114, 0.10), transparent 60%),
+    radial-gradient(ellipse 600px 500px at 20% 100%, rgba(56, 189, 248, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-dark-2) 100%);
+  color: var(--fg-on-dark);
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
+          mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
+  pointer-events: none;
+}
+.hero__inner {
+  position: relative;
+  /* max-width / padding inherited from shared container rule */
+  display: grid;
+  gap: 56px;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .hero__inner {
+    grid-template-columns: 1.05fr 1fr;
+    gap: 72px;
+  }
+}
+
+.hero__copy { max-width: 580px; }
+.hero__headline {
+  margin-top: 20px;
+  color: var(--fg-on-dark);
+}
+.hero__headline em {
+  font-style: normal;
+  color: var(--accent);
+  position: relative;
+}
+.hero__lede {
+  margin-top: 22px;
+  max-width: 520px;
+}
+.hero__cta-row {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero__trust-line {
+  margin-top: 22px;
+  font-size: 13px;
+  color: var(--fg-on-dark-faint);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero__trust-line svg { width: 14px; height: 14px; color: var(--accent); }
+
+/* ---------- Hero verdict card (the actual product, rendered) ---------- */
+.verdict-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card-on-dark);
+  overflow: hidden;
+  position: relative;
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: card-rise 800ms 200ms both cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: 520px;
+  margin: 0 auto;
+}
+@keyframes card-rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.vc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-alt);
+}
+.vc-head__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.vc-head__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-dk);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.vc-head__live::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 rgba(38,212,114, 0.45);
+  animation: live-pulse 2s ease-out infinite;
+}
+@keyframes live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(38,212,114, 0.45); }
+  70%  { box-shadow: 0 0 0 8px rgba(38,212,114, 0.00); }
+  100% { box-shadow: 0 0 0 0 rgba(38,212,114, 0.00); }
+}
+.vc-head__id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-faint);
+}
+
+.vc-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 22px 20px;
+  background: linear-gradient(135deg, rgba(38,212,114, 0.08) 0%, rgba(38,212,114, 0.02) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.vc-tier {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.vc-tier__dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--tier-low);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+.vc-tier__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent-dk);
+  text-transform: uppercase;
+}
+.vc-tier__sub {
+  font-size: 13px;
+  color: var(--fg-muted);
+  margin-top: 2px;
+}
+.vc-score {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.vc-score__num {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  line-height: 1;
+}
+.vc-score__denom {
+  font-size: 14px;
+  color: var(--fg-faint);
+  margin-left: 2px;
+}
+.vc-score__label {
+  font-size: 11px;
+  color: var(--fg-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+.vc-rules { padding: 4px 0; }
+.vc-rule {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 22px;
+  font-size: 13.5px;
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: rule-in 500ms both cubic-bezier(0.22, 1, 0.36, 1);
+}
+.vc-rule + .vc-rule { border-top: 1px solid #F1F5F9; }
+.vc-rule:nth-of-type(1) { animation-delay: 800ms; }
+.vc-rule:nth-of-type(2) { animation-delay: 950ms; }
+.vc-rule:nth-of-type(3) { animation-delay: 1100ms; }
+.vc-rule:nth-of-type(4) { animation-delay: 1250ms; }
+.vc-rule:nth-of-type(5) { animation-delay: 1400ms; }
+@keyframes rule-in { to { opacity: 1; transform: translateX(0); } }
+.vc-rule__delta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  padding: 4px 0;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.02em;
+}
+/* Delta colors follow the engine's semantics: a POSITIVE delta ADDS
+ * risk (amber/red), a NEGATIVE delta REDUCES risk (green). Lower score
+ * = safer merchant. This matches the shared-verdict page + PDF. */
+.vc-rule__delta--pos { background: rgba(249, 115, 22, 0.12); color: #C2410C; }
+.vc-rule__delta--neu { background: #F1F5F9; color: var(--fg-muted); }
+.vc-rule__delta--neg { background: var(--accent-soft); color: var(--accent-dk); }
+.vc-rule__name {
+  color: var(--fg);
+  font-weight: 500;
+}
+.vc-rule__src {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-faint);
+  text-align: right;
+}
+
+.vc-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-alt);
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+.vc-foot__time {
+  font-family: 'JetBrains Mono', monospace;
+}
+.vc-foot__sources {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.vc-foot__sources::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* ============================================================
+ * Source band (the honest move — data sources, not customer logos)
+ * ============================================================ */
+.src-band {
+  background: var(--bg-page);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 32px 0;
+}
+.src-band__inner {
+  /* max-width / padding inherited from shared container rule */
+}
+.src-band__title {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--fg-soft);
+  margin-bottom: 22px;
+}
+.src-band__track {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 36px 44px;
+}
+.src-band__item {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: opacity 200ms, color 200ms;
+}
+.src-band__item:hover {
+  opacity: 1;
+  color: var(--fg);
+}
+.src-band__item .sb-dot {
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 8px;
+  vertical-align: middle;
+  opacity: 0.6;
+}
+
+/* ============================================================
+ * Section primitive (white sections)
+ * ============================================================ */
+.section {
+  padding: 96px 0;
+  position: relative;
+}
+.section--alt { background: var(--bg-alt); border-block: 1px solid var(--border); }
+.section--dark {
+  background: var(--bg-dark);
+  color: var(--fg-on-dark);
+}
+.section__inner {
+  /* max-width / padding inherited from shared container rule */
+}
+.section__header {
+  max-width: 720px;
+  margin-bottom: 56px;
+}
+.section__header--centered {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.section__header h2 { margin-top: 14px; }
+.section__header p { margin-top: 14px; }
+
+/* ============================================================
+ * Stat strip (the four honest numbers)
+ * ============================================================ */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 24px;
+}
+@media (min-width: 768px) {
+  .stat-strip { grid-template-columns: repeat(4, 1fr); }
+}
+.stat {
+  border-left: 2px solid var(--border);
+  padding-left: 18px;
+}
+.stat__num {
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+  line-height: 1.1;
+}
+.stat__num .unit {
+  font-size: 24px;
+  color: var(--fg-faint);
+  margin-left: 2px;
+}
+.stat__num .pre {
+  font-size: 24px;
+  color: var(--fg-faint);
+  margin-right: 4px;
+}
+.stat__label {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--fg-muted);
+  line-height: 1.45;
+}
+
+/* ============================================================
+ * The verdict, deconstructed (split feature with rendered receipt)
+ * ============================================================ */
+.deconstruct-grid {
+  display: grid;
+  gap: 56px;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .deconstruct-grid { grid-template-columns: 1fr 1fr; gap: 72px; }
+}
+.deconstruct__copy h2 { margin-top: 16px; }
+.deconstruct__copy p { margin-top: 18px; }
+.deconstruct__list {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.deconstruct__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--fg);
+  line-height: 1.5;
+}
+.deconstruct__check {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-dk);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.deconstruct__check svg { width: 11px; height: 11px; }
+.deconstruct__item strong { font-weight: 600; }
+
+/* The receipt visual — a single rule row, blown up */
+.receipt {
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-lift);
+  position: relative;
+}
+.receipt::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--accent-soft) 0%, transparent 60%);
+  z-index: -1;
+}
+.receipt__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed var(--border-strong);
+}
+.receipt__head .h-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.receipt__head .h-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+.receipt__rule {
+  padding: 22px 0;
+  border-bottom: 1px dashed var(--border-strong);
+}
+.receipt__rule-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fg);
+}
+.receipt__rule-meta {
+  margin-top: 6px;
+  display: flex;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+.receipt__rule-meta .delta {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: var(--accent-dk);
+}
+.receipt__source {
+  margin-top: 22px;
+  padding: 14px 16px;
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.receipt__source .src-label {
+  color: var(--accent-dk);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10.5px;
+  display: block;
+  margin-bottom: 6px;
+}
+.receipt__source .src-row {
+  color: var(--fg);
+}
+.receipt__source .src-meta {
+  color: var(--fg-faint);
+  margin-top: 4px;
+}
+
+/* ============================================================
+ * How it works (3-step cards)
+ * ============================================================ */
+.steps-grid {
+  display: grid;
+  gap: 18px;
+}
+@media (min-width: 768px) {
+  .steps-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.step-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 26px 24px;
+  position: relative;
+  transition: transform 200ms, box-shadow 200ms, border-color 200ms;
+}
+.step-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--border-strong);
+}
+.step-card__num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent-dk);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.step-card__title {
+  margin-top: 16px;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.step-card__body {
+  margin-top: 10px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+.step-card__detail {
+  margin-top: 18px;
+  padding: 12px;
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--fg);
+}
+.step-card__detail .verb {
+  color: var(--accent-dk);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+/* ============================================================
+ * Developer-first section (dark, with code sample)
+ * ============================================================ */
+.dev-grid {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .dev-grid { grid-template-columns: 1fr 1.2fr; gap: 64px; }
+}
+.dev-copy h2 { margin-top: 14px; color: var(--fg-on-dark); }
+.dev-copy p { margin-top: 18px; color: var(--fg-on-dark-muted); }
+.dev-copy .dev-bullets {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dev-copy .dev-bullet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--fg-on-dark-muted);
+}
+.dev-copy .dev-bullet svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
+
+.code-block {
+  background: var(--bg-code);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.code-block__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+}
+.code-block__dots {
+  display: flex;
+  gap: 6px;
+}
+.code-block__dots span {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+}
+.code-block__title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+}
+.code-block__copy {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.40);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: color 150ms, border-color 150ms;
+}
+.code-block__copy:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.code-block__copy.copied { color: var(--accent); border-color: var(--accent); }
+.code-block__body {
+  padding: 22px 22px 24px;
+  overflow-x: auto;
+}
+.code-block pre {
+  margin: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #E2E8F0;
+  white-space: pre;
+}
+/* Inline syntax highlighting via spans (we'll add these in HTML) */
+.tok-comment  { color: #64748B; font-style: italic; }
+.tok-keyword  { color: #C084FC; }
+.tok-string   { color: #86EFAC; }
+.tok-fn       { color: #38BDF8; }
+.tok-class    { color: #FDE68A; }
+.tok-number   { color: #F0ABFC; }
+.tok-punct    { color: #94A3B8; }
+
+/* Response trailing the code */
+.code-response {
+  margin-top: 14px;
+  padding: 16px 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.55;
+}
+.code-response .resp-tier {
+  color: var(--accent);
+  font-weight: 600;
+}
+.code-response .resp-arrow {
+  color: rgba(255,255,255,0.35);
+  margin: 0 6px;
+}
+
+/* ============================================================
+ * Pricing
+ * ============================================================ */
+.pricing-grid {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 640px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .pricing-grid { grid-template-columns: repeat(4, 1fr); } }
+.price-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 200ms, box-shadow 200ms;
+}
+.price-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+.price-card--featured {
+  border: 1px solid var(--bg-dark);
+  background: var(--bg-dark);
+  color: var(--fg-on-dark);
+  position: relative;
+  box-shadow: 0 12px 36px rgba(11, 18, 32, 0.20);
+}
+.price-card--featured::before {
+  content: 'Most popular';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--bg-dark);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.price-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.price-card__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: inherit;
+}
+.price-card__tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--fg-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.price-card--featured .price-card__tag { color: var(--accent); }
+.price-card__amount {
+  margin-top: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.price-card__amount .num {
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.price-card__amount .unit {
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+.price-card--featured .price-card__amount .unit { color: var(--fg-on-dark-muted); }
+.price-card__desc {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--fg-muted);
+  line-height: 1.5;
+}
+.price-card--featured .price-card__desc { color: var(--fg-on-dark-muted); }
+.price-card__features {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+}
+.price-card__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.price-card__feature svg {
+  width: 14px; height: 14px;
+  color: var(--accent-dk);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.price-card--featured .price-card__feature svg { color: var(--accent); }
+.price-card__cta {
+  margin-top: 24px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 150ms ease;
+}
+.price-card__cta--ghost {
+  border: 1px solid var(--border-strong);
+  color: var(--fg);
+  background: var(--bg-page);
+}
+.price-card__cta--ghost:hover { background: var(--bg-alt); }
+.price-card__cta--featured {
+  background: var(--accent);
+  color: var(--bg-dark);
+}
+.price-card__cta--featured:hover { background: var(--accent-dk); color: var(--fg-on-dark); }
+
+/* ============================================================
+ * Compliance / trust cards
+ * ============================================================ */
+.trust-grid {
+  display: grid;
+  gap: 18px;
+}
+@media (min-width: 768px) { .trust-grid { grid-template-columns: repeat(3, 1fr); } }
+.trust-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px 24px;
+}
+.trust-card__icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-soft);
+  border-radius: var(--radius);
+  color: var(--accent-dk);
+  margin-bottom: 16px;
+}
+.trust-card__icon svg { width: 18px; height: 18px; }
+.trust-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.trust-card__body {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--fg-muted);
+  line-height: 1.55;
+}
+
+/* ============================================================
+ * Final CTA (dark wash)
+ * ============================================================ */
+.final-cta {
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 0%, rgba(38,212,114, 0.12), transparent 70%),
+    var(--bg-dark);
+  color: var(--fg-on-dark);
+  padding: 100px 0 96px;
+  text-align: center;
+}
+.final-cta h2 { color: var(--fg-on-dark); }
+.final-cta p { margin-top: 14px; color: var(--fg-on-dark-muted); }
+.final-cta__row {
+  margin-top: 32px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* ============================================================
+ * Footer
+ * ============================================================ */
+.lp-footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+}
+.lp-footer__inner {
+  /* max-width / padding inherited from shared container rule */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+.lp-footer a {
+  color: var(--fg-muted);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.lp-footer a:hover { color: var(--fg); }
+.lp-footer__links { display: flex; gap: 22px; }
+
+/* ============================================================
+ * Scroll reveals (kept from prior engine)
+ * ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+[data-reveal="left"]  { transform: translate3d(-24px, 0, 0); }
+[data-reveal="right"] { transform: translate3d( 24px, 0, 0); }
+[data-reveal].is-visible[data-reveal="left"],
+[data-reveal].is-visible[data-reveal="right"] { transform: translate3d(0, 0, 0); }
+[data-reveal-delay="100"] { transition-delay: 100ms; }
+[data-reveal-delay="200"] { transition-delay: 200ms; }
+[data-reveal-delay="300"] { transition-delay: 300ms; }
+[data-reveal-delay="400"] { transition-delay: 400ms; }
+
+/* ============================================================
+ * Reduced motion
+ * ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .verdict-card,
+  .vc-rule,
+  .vc-head__live::before {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
   </style>
 </head>
-<body>
-  <header>
-    <div class="wrap nav">
-      <a href="/sourcemark/" class="brand"><img src="icon.png" alt="Sourcemark" class="badge" style="object-fit:cover;background:none;padding:0"> Sourcemark</a>
-      <nav class="nav-links">
-        <a href="#how">How it works</a>
-        <a href="#features">Features</a>
-        <a href="https://kyb-scanner.onrender.com/" target="_blank" rel="noopener" class="btn btn-primary">Launch app →</a>
-      </nav>
+<body class="landing-body">
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header class="lp-nav">
+  <div class="lp-nav__inner">
+    <a href="/sourcemark/" class="lp-brand">
+      <img src="icon.png" alt="Sourcemark" class="lp-brand__mark" style="width:28px;height:28px;border-radius:7px;object-fit:cover;padding:0;background:none">
+      <span>Sourcemark</span>
+    </a>
+    <nav class="lp-nav__links">
+      <a href="#how-it-works" class="lp-nav__link">How it works</a>
+      <a href="#developers"   class="lp-nav__link">Developers</a>
+      <a href="#pricing"      class="lp-nav__link">Pricing</a>
+      <a href="https://kyb-scanner.onrender.com/api/v1/docs/" target="_blank" rel="noopener" class="lp-nav__link">API</a>
+      <a href="https://kyb-scanner.onrender.com/login/" class="lp-nav__link">Log in</a>
+    </nav>
+    <a href="https://kyb-scanner.onrender.com/signup/" class="lp-nav__cta">
+      Get started free
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================================================
+       1. HERO — dark navy, real rendered verdict card
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <span class="lp-eyebrow lp-eyebrow--on-dark">
+          <span class="dot"></span>
+          KYB infrastructure · built for devs
+        </span>
+
+        <h1 class="lp-h1 hero__headline">
+          Know any business.<br>
+          With the <em>receipts</em>.
+        </h1>
+
+        <p class="lp-lede lp-lede--on-dark hero__lede">
+          Submit a URL. Thirteen official sources run in parallel — sanctions, PEPs,
+          business registries across 140+ jurisdictions, SEC EDGAR, threat intel,
+          adverse media. Get a defensible verdict in seconds, with every rule linked
+          back to the record that fired it.
+        </p>
+
+        <div class="hero__cta-row">
+          <a href="https://kyb-scanner.onrender.com/signup/" class="btn btn--primary">
+            Get started free
+            <svg class="btn__arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M9 3l4 4-4 4"/></svg>
+          </a>
+          <a href="https://kyb-scanner.onrender.com/api/v1/docs/" target="_blank" rel="noopener" class="btn btn--ghost-on-dark">
+            View the docs
+          </a>
+        </div>
+
+        <div class="hero__trust-line">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l-6 2.4v4.2c0 3.6 2.6 6.6 6 7.4 3.4-.8 6-3.8 6-7.4V3.4L8 1zm-1 10L4 8l1.4-1.4L7 8.2l3.6-3.6L12 6l-5 5z"/></svg>
+          No credit card · 10 scans / month · Sandbox keys included
+        </div>
+      </div>
+
+      <!-- The actual product. Not a mockup. -->
+      <div class="hero__visual">
+        <div class="verdict-card" role="img" aria-label="Example verdict card for stripe.com: LOW RISK, risk score 6 of 100 where lower is safer, five rules with their sources">
+          <div class="vc-head">
+            <div class="vc-head__left">
+              <span class="vc-head__live">Live</span>
+              <span>stripe.com</span>
+            </div>
+            <div class="vc-head__id">scn_8K2a4f</div>
+          </div>
+
+          <div class="vc-banner">
+            <div class="vc-tier">
+              <span class="vc-tier__dot"></span>
+              <div>
+                <div class="vc-tier__label">Low risk</div>
+                <div class="vc-tier__sub">Verdict: clear to onboard</div>
+              </div>
+            </div>
+            <div class="vc-score">
+              <div>
+                <span class="vc-score__num">6</span><span class="vc-score__denom">/100</span>
+              </div>
+              <div class="vc-score__label">Risk · lower is safer</div>
+            </div>
+          </div>
+
+          <div class="vc-rules">
+            <div class="vc-rule">
+              <span class="vc-rule__delta vc-rule__delta--neg">−20</span>
+              <span class="vc-rule__name">Trusted infrastructure</span>
+              <span class="vc-rule__src">Tranco #47</span>
+            </div>
+            <div class="vc-rule">
+              <span class="vc-rule__delta vc-rule__delta--neg">−12</span>
+              <span class="vc-rule__name">Active registry filing</span>
+              <span class="vc-rule__src">SEC EDGAR</span>
+            </div>
+            <div class="vc-rule">
+              <span class="vc-rule__delta vc-rule__delta--neg">−10</span>
+              <span class="vc-rule__name">Domain age 14y</span>
+              <span class="vc-rule__src">ICANN RDAP</span>
+            </div>
+            <div class="vc-rule">
+              <span class="vc-rule__delta vc-rule__delta--neg">−15</span>
+              <span class="vc-rule__name">Review-site presence</span>
+              <span class="vc-rule__src">Trustpilot</span>
+            </div>
+            <div class="vc-rule">
+              <span class="vc-rule__delta vc-rule__delta--pos">+5</span>
+              <span class="vc-rule__name">Adverse-media mentions</span>
+              <span class="vc-rule__src">GDELT</span>
+            </div>
+          </div>
+
+          <div class="vc-foot">
+            <span class="vc-foot__time">Completed in 4.2s</span>
+            <span class="vc-foot__sources">13 sources checked</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero">
-      <div class="wrap grid">
+  <!-- ============================================================
+       2. SOURCE BAND — the honest move
+       (data sources, not customer logos, because we have provenance)
+       ============================================================ -->
+  <section class="src-band">
+    <div class="src-band__inner">
+      <p class="src-band__title">Powered by official watchlists, registries &amp; intel</p>
+      <div class="src-band__track">
+        <span class="src-band__item"><span class="sb-dot"></span>OFAC SDN</span>
+        <span class="src-band__item"><span class="sb-dot"></span>UN Consolidated</span>
+        <span class="src-band__item"><span class="sb-dot"></span>UK HMT</span>
+        <span class="src-band__item"><span class="sb-dot"></span>EU Consolidated</span>
+        <span class="src-band__item"><span class="sb-dot"></span>Open Sanctions PEPs</span>
+        <span class="src-band__item"><span class="sb-dot"></span>URLhaus</span>
+        <span class="src-band__item"><span class="sb-dot"></span>OpenPhish</span>
+        <span class="src-band__item"><span class="sb-dot"></span>Tranco</span>
+        <span class="src-band__item"><span class="sb-dot"></span>ICANN RDAP</span>
+        <span class="src-band__item"><span class="sb-dot"></span>Companies House</span>
+        <span class="src-band__item"><span class="sb-dot"></span>OpenCorporates</span>
+        <span class="src-band__item"><span class="sb-dot"></span>SEC EDGAR</span>
+        <span class="src-band__item"><span class="sb-dot"></span>GDELT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. STAT STRIP — four honest numbers
+       ============================================================ -->
+  <section class="section">
+    <div class="section__inner">
+      <div class="stat-strip">
+        <div class="stat" data-reveal>
+          <div class="stat__num"><span data-count-to="13">0</span></div>
+          <div class="stat__label">Watchlists, PEP datasets &amp; business registries wired end-to-end</div>
+        </div>
+        <div class="stat" data-reveal data-reveal-delay="100">
+          <div class="stat__num"><span data-count-to="14">0</span><span class="unit"> ‖</span></div>
+          <div class="stat__label">Independent extractors run in parallel — no single slow source blocks the verdict</div>
+        </div>
+        <div class="stat" data-reveal data-reveal-delay="200">
+          <div class="stat__num"><span data-count-to="100">0</span><span class="unit">%</span></div>
+          <div class="stat__label">Verdicts ship with full source attribution</div>
+        </div>
+        <div class="stat" data-reveal data-reveal-delay="300">
+          <div class="stat__num"><span data-count-to="22">0</span></div>
+          <div class="stat__label">Scoring rules — every weight &amp; threshold in the open</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. THE VERDICT, DECONSTRUCTED — split: copy + receipt
+       ============================================================ -->
+  <section class="section section--alt">
+    <div class="section__inner">
+      <div class="deconstruct-grid">
+        <div class="deconstruct__copy">
+          <span class="lp-eyebrow"><span class="lp-section-num">01</span> THE RECEIPT</span>
+          <h2 class="lp-h2">Every verdict comes with its evidence.</h2>
+          <p class="lp-lede">
+            Black-box risk scores are why compliance teams hate "AI for KYB."
+            We took the opposite bet: every rule that fires shows you the exact
+            record it fired on — sanctioned entity row, abuse-feed entry, registry document.
+          </p>
+          <div class="deconstruct__list">
+            <div class="deconstruct__item">
+              <span class="deconstruct__check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg></span>
+              <span><strong>source_refs on every rule.</strong> Click through to OFAC, URLhaus, or RDAP — the exact record, with timestamp.</span>
+            </div>
+            <div class="deconstruct__item">
+              <span class="deconstruct__check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg></span>
+              <span><strong>PDF / CSV / JSON export.</strong> Drop a verdict report straight into the case file or onboarding ticket.</span>
+            </div>
+            <div class="deconstruct__item">
+              <span class="deconstruct__check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg></span>
+              <span><strong>Open methodology.</strong> Every rule, weight, and override is documented and pinned to a versioned config.</span>
+            </div>
+            <div class="deconstruct__item">
+              <span class="deconstruct__check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg></span>
+              <span><strong>Calibration endpoint.</strong> Send feedback. We publish per-rule precision back to you, monthly.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- The "receipt" — one rule from the hero, blown up with provenance -->
+        <div class="receipt" data-reveal="right">
+          <div class="receipt__head">
+            <span class="h-label">Rule fired</span>
+            <span class="h-id">rule.domain_established</span>
+          </div>
+          <div class="receipt__rule">
+            <div class="receipt__rule-name">Domain established (3+ years)</div>
+            <div class="receipt__rule-meta">
+              <span class="delta">−10 risk</span>
+              <span>lowers score</span>
+              <span>fired: yes</span>
+            </div>
+          </div>
+          <div class="receipt__source">
+            <span class="src-label">Source · ICANN RDAP</span>
+            <div class="src-row">domain: stripe.com</div>
+            <div class="src-row">created: 2009-12-15T05:36:30Z</div>
+            <div class="src-row">registrar: MarkMonitor Inc.</div>
+            <div class="src-meta">verified: 2026-06-16 04:12 UTC · cache hit · 0.12s</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. HOW IT WORKS — 3 numbered cards
+       ============================================================ -->
+  <section id="how-it-works" class="section">
+    <div class="section__inner">
+      <div class="section__header section__header--centered">
+        <span class="lp-eyebrow"><span class="lp-section-num">02</span> HOW IT WORKS</span>
+        <h2 class="lp-h2">From URL to defensible verdict, in three steps.</h2>
+        <p class="lp-lede">No webhooks to configure to get started. No data residency contracts. Just an API key and a URL.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card" data-reveal data-reveal-delay="100">
+          <div class="step-card__num">STEP 01 · SUBMIT</div>
+          <div class="step-card__title">Send a URL.</div>
+          <p class="step-card__body">
+            One URL or a batch up to 1,000. Sandbox keys never count against your quota — wire it up before billing kicks in.
+          </p>
+          <div class="step-card__detail">
+            <span class="verb">POST</span>/api/v1/scans/
+          </div>
+        </div>
+        <div class="step-card" data-reveal data-reveal-delay="200">
+          <div class="step-card__num">STEP 02 · PARALLEL</div>
+          <div class="step-card__title">Thirteen sources, in parallel.</div>
+          <p class="step-card__body">
+            Sanctions across four official lists, PEPs via Open Sanctions, Companies House + OpenCorporates (140+ jurisdictions) + SEC EDGAR for US public-filer matching, domain registry, threat intel, and GDELT adverse-media. Customer-attested beneficial owners get cross-checked too.
+          </p>
+          <div class="step-card__detail">
+            14 extractors · async pipeline
+          </div>
+        </div>
+        <div class="step-card" data-reveal data-reveal-delay="300">
+          <div class="step-card__num">STEP 03 · VERDICT</div>
+          <div class="step-card__title">Score + tier + every receipt.</div>
+          <p class="step-card__body">
+            22 scoring rules produce a tier and composite risk score (lower is safer). Every rule that fires returns its <code>source_refs</code> — defensible at audit time.
+          </p>
+          <div class="step-card__detail">
+            <span class="verb">GET</span>/api/v1/scans/&lt;id&gt;/
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5b. CONTINUOUS MONITORING — onboard once, get pinged on change
+       ============================================================ -->
+  <section class="section section--alt">
+    <div class="section__inner">
+      <div class="deconstruct-grid">
+        <div class="deconstruct__copy">
+          <span class="lp-eyebrow"><span class="lp-section-num">02·5</span> CONTINUOUS MONITORING</span>
+          <h2 class="lp-h2">Onboard once. Get pinged when it changes.</h2>
+          <p class="lp-lede">
+            Pin a merchant to a monitor — daily, weekly, or monthly. We re-scan on the
+            cadence, diff the verdict, and fire <code>monitor.tripped</code> on every tier
+            flip or material score change. No polling. No re-onboarding to find out a
+            customer landed on OFAC last week.
+          </p>
+          <div class="deconstruct__list">
+            <div class="deconstruct__item">
+              <span class="deconstruct__check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg></span>
+              <span><strong>Tier flips always trip.</strong> low → high gets routed to your review queue immediately.</span>
+            </div>
+            <div class="deconstruct__item">
+              <span class="deconstruct__check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg></span>
+              <span><strong>Configurable score threshold</strong> — default ±10. Set it tighter for high-value merchants.</span>
+            </div>
+            <div class="deconstruct__item">
+              <span class="deconstruct__check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg></span>
+              <span><strong>Full diff in the payload.</strong> prior tier, new tier, score delta, both scan IDs — act in one round-trip.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="receipt" data-reveal="right">
+          <div class="receipt__head">
+            <span class="h-label">monitor.tripped · webhook payload</span>
+            <span class="h-id">mon_4f8c1a</span>
+          </div>
+          <div class="receipt__source" style="margin-top: 18px;">
+            <span class="src-label">Diff</span>
+            <div class="src-row">prior_tier: <strong>low</strong> → new_tier: <strong>high</strong></div>
+            <div class="src-row">prior_score: 18 → new_score: 64</div>
+            <div class="src-row">score_delta: <strong>+46</strong> (threshold: 10)</div>
+            <div class="src-meta">caused by: sanctions_hit fired against opensanctions_pep · pep-2049</div>
+          </div>
+          <div style="margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--fg-muted);">
+            POST → your_endpoint<br>
+            X-KYB-Event: monitor.tripped<br>
+            X-KYB-Signature: sha256=…
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       6. DEVELOPERS — dark section, real code sample
+       ============================================================ -->
+  <section id="developers" class="section section--dark">
+    <div class="section__inner">
+      <div class="dev-grid">
+        <div class="dev-copy">
+          <span class="lp-eyebrow lp-eyebrow--on-dark"><span class="lp-section-num" style="color: var(--accent);">03</span> PIP INSTALL</span>
+          <h2 class="lp-h2">From <code style="font-family: 'JetBrains Mono', monospace; color: var(--accent);">pip install</code> to verdict in 60 seconds.</h2>
+          <p class="lp-lede lp-lede--on-dark">
+            We're product-led, not sales-led. No demo call to try it. Python SDK,
+            full OpenAPI spec, sandbox keys, webhook signature verification —
+            everything you need to wire it up in an afternoon.
+          </p>
+          <div class="dev-bullets">
+            <div class="dev-bullet">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg>
+              Idempotency keys auto-generated by the SDK
+            </div>
+            <div class="dev-bullet">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg>
+              Webhooks with HMAC signature verification
+            </div>
+            <div class="dev-bullet">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg>
+              Bulk endpoint: 1,000 URLs per call, atomic quota reservation
+            </div>
+            <div class="dev-bullet">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg>
+              Typed errors: <code>QuotaExceeded</code>, <code>RateLimited</code>, <code>ValidationError</code>
+            </div>
+          </div>
+        </div>
+
         <div>
-          <div class="eyebrow" data-reveal><span class="dot"></span> KYB Infrastructure · Built for devs</div>
-          <h1 class="d1" data-reveal>Know any business.<br>With the <span class="g">receipts.</span></h1>
-          <p class="lead d2" data-reveal>Submit a URL. Sourcemark runs 13 official sources in parallel — sanctions, PEPs, abuse feeds, domain intelligence, adverse media — and returns a scored risk verdict where <strong>every signal cites its source.</strong> No black box. Just evidence.</p>
-          <div class="cta d3" data-reveal>
-            <a href="https://kyb-scanner.onrender.com/signup/" target="_blank" rel="noopener" class="btn btn-primary">Get started free</a>
-            <a href="https://kyb-scanner.onrender.com/" target="_blank" rel="noopener" class="btn btn-ghost">See it live →</a>
+          <div class="code-block">
+            <div class="code-block__head">
+              <div class="code-block__dots"><span></span><span></span><span></span></div>
+              <span class="code-block__title">quickstart.py</span>
+              <button class="code-block__copy" type="button" data-copy-target="#code-sample">Copy</button>
+            </div>
+            <div class="code-block__body">
+<pre id="code-sample"><span class="tok-keyword">from</span> kyb_scanner <span class="tok-keyword">import</span> KybClient
+
+client = <span class="tok-class">KybClient</span>(api_key=<span class="tok-string">"kyb_test_xxx"</span>)
+scan = client.scans.<span class="tok-fn">create</span>(url=<span class="tok-string">"https://stripe.com"</span>)
+
+<span class="tok-fn">print</span>(<span class="tok-string">f"{scan.verdict.tier.upper()} — {scan.verdict.score}/<span class="tok-number">100</span>"</span>)
+<span class="tok-keyword">for</span> r <span class="tok-keyword">in</span> scan.verdict.reasons:
+    <span class="tok-fn">print</span>(<span class="tok-string">f"  {r.delta:+d}  {r.name}"</span>)</pre>
+            </div>
           </div>
-          <p class="sub d4" data-reveal>Free tier · no card · sanctions + PEP + abuse screening out of the box.</p>
-        </div>
 
-        <div class="card d2" data-reveal aria-hidden="true">
-          <div class="card-top">
-            <span class="live"><span class="dot"></span> LIVE · stripe.com</span>
-            <span class="scn">scn_8K2a4f</span>
+          <div class="code-response">
+            <span class="resp-tier">LOW</span> — 6/100 (lower is safer)<br>
+            &nbsp;&nbsp;−20&nbsp;&nbsp;Trusted infrastructure&nbsp;&nbsp;<span class="resp-arrow">←</span>&nbsp;Tranco #47<br>
+            &nbsp;&nbsp;−12&nbsp;&nbsp;Active registry filing&nbsp;&nbsp;<span class="resp-arrow">←</span>&nbsp;SEC EDGAR<br>
+            &nbsp;&nbsp;−10&nbsp;&nbsp;Domain age 14y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="resp-arrow">←</span>&nbsp;ICANN RDAP<br>
+            &nbsp;&nbsp;−15&nbsp;&nbsp;Review-site presence&nbsp;&nbsp;<span class="resp-arrow">←</span>&nbsp;Trustpilot<br>
+            &nbsp;&nbsp;&nbsp;+5&nbsp;&nbsp;Adverse-media mentions&nbsp;<span class="resp-arrow">←</span>&nbsp;GDELT
           </div>
-          <div class="verdict">
-            <div class="risk-l"><b>LOW RISK</b><span>Verdict: clear to onboard</span></div>
-            <div class="score"><div class="n"><span data-count-to="6">0</span><span class="of">/100</span></div><div class="lbl">RISK · LOWER IS SAFER</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       7. PRICING — anchored, free tier prominent
+       ============================================================ -->
+  <section id="pricing" class="section section--alt">
+    <div class="section__inner">
+      <div class="section__header section__header--centered">
+        <span class="lp-eyebrow"><span class="lp-section-num">04</span> PRICING</span>
+        <h2 class="lp-h2">Anchored. Transparent. Free to start.</h2>
+        <p class="lp-lede">Sandbox keys never count against quota. Cancel any time. Annual saves 20%.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="price-card" data-reveal data-reveal-delay="100">
+          <div class="price-card__head">
+            <span class="price-card__name">Free</span>
+            <span class="price-card__tag">FREE</span>
           </div>
-          <div class="row"><span class="chip">−20</span> Trusted infrastructure <span class="src">Tranco #47</span></div>
-          <div class="row"><span class="chip">−12</span> Active registry filing <span class="src">SEC EDGAR</span></div>
-          <div class="row"><span class="chip">−10</span> Domain age 14y <span class="src">ICANN RDAP</span></div>
-          <div class="row"><span class="chip">−8</span> No sanctions / PEP hit <span class="src">OFAC · OpenSanctions</span></div>
+          <div class="price-card__amount"><span class="num">Free</span></div>
+          <p class="price-card__desc">Trial tier — 10 scans/month, 30/min throttle, no charge.</p>
+          <div class="price-card__features"><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>10 scans / month</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>30 req / minute</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>Sandbox keys + bulk API</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>Webhooks + PDF / CSV exports</span></div></div>
+          <a href="https://kyb-scanner.onrender.com/signup/" class="price-card__cta price-card__cta--ghost">Start free</a>
+        </div>
+        <div class="price-card" data-reveal data-reveal-delay="200">
+          <div class="price-card__head">
+            <span class="price-card__name">Starter</span>
+            <span class="price-card__tag">STARTER</span>
+          </div>
+          <div class="price-card__amount"><span class="num">$199</span><span class="unit">/ mo</span></div>
+          <p class="price-card__desc">500 scans/month, 60/min throttle. For small risk teams.</p>
+          <div class="price-card__features"><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>500 scans / month</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>60 req / minute</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>Sandbox keys + bulk API</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>Webhooks + PDF / CSV exports</span></div></div>
+          <a href="https://kyb-scanner.onrender.com/signup/" class="price-card__cta price-card__cta--ghost">Start with Starter</a>
+        </div>
+        <div class="price-card price-card--featured" data-reveal data-reveal-delay="300">
+          <div class="price-card__head">
+            <span class="price-card__name">Growth</span>
+            <span class="price-card__tag">GROWTH</span>
+          </div>
+          <div class="price-card__amount"><span class="num">$999</span><span class="unit">/ mo</span></div>
+          <p class="price-card__desc">5,000 scans/month, 120/min throttle. For growing fintechs.</p>
+          <div class="price-card__features"><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>5000 scans / month</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>120 req / minute</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>Sandbox keys + bulk API</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>Webhooks + PDF / CSV exports</span></div></div>
+          <a href="https://kyb-scanner.onrender.com/signup/" class="price-card__cta price-card__cta--featured">Start with Growth</a>
+        </div>
+        <div class="price-card" data-reveal data-reveal-delay="400">
+          <div class="price-card__head">
+            <span class="price-card__name">Enterprise</span>
+            <span class="price-card__tag">ENTERPRISE</span>
+          </div>
+          <div class="price-card__amount"><span class="num">Custom</span></div>
+          <p class="price-card__desc">Custom quota, 300/min throttle. Contact sales.</p>
+          <div class="price-card__features"><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>Unlimited scans</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>300 req / minute</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>Sandbox keys + bulk API</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>Webhooks + PDF / CSV exports</span></div><div class="price-card__feature"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7l3 3 5-6"/></svg><span>SSO + custom data residency</span></div></div>
+          <a href="https://kyb-scanner.onrender.com/signup/" class="price-card__cta price-card__cta--ghost">Contact sales</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="features">
-      <div class="wrap">
-        <div class="sec-h" data-reveal>Why Sourcemark</div>
-        <div class="sec-t d1" data-reveal>Auditable by design.</div>
-        <p class="sec-d d2" data-reveal>Most KYB tools hand you a score and ask you to trust it. Sourcemark hands you the score <em>and</em> the paper trail — every rule that fired links back to the exact source it came from.</p>
-        <div class="cards">
-          <div class="feat" data-reveal><div class="ic">🧾</div><h3>Source-cited verdicts</h3><p>Every signal — positive or negative — carries a citation to the authority it came from. Perfect for audit trails and compliance reviews.</p></div>
-          <div class="feat" data-reveal><div class="ic">🌐</div><h3>13 official sources</h3><p>OFAC, UN, EU &amp; UK sanctions, OpenSanctions PEPs, URLhaus &amp; OpenPhish abuse feeds, RDAP/WHOIS, SEC EDGAR, Tranco, adverse media, and more — run in parallel.</p></div>
-          <div class="feat" data-reveal><div class="ic">🛰️</div><h3>Continuous monitoring</h3><p>Register a merchant once and get a webhook the moment its risk tier changes — a new sanctions hit, a domain flag, a score shift.</p></div>
-          <div class="feat" data-reveal><div class="ic">⚡</div><h3>Developer-first API</h3><p>One REST call in, a structured verdict out. Sandbox keys, OpenAPI docs, and a Python SDK. Built to drop into your onboarding flow.</p></div>
+  <!-- ============================================================
+       8. COMPLIANCE / TRUST — three cards
+       ============================================================ -->
+  <section class="section">
+    <div class="section__inner">
+      <div class="section__header section__header--centered">
+        <span class="lp-eyebrow"><span class="lp-section-num">05</span> COMPLIANCE</span>
+        <h2 class="lp-h2">Built to pass procurement.</h2>
+        <p class="lp-lede">The unsexy stuff your security team will ask about — answered.</p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="trust-card" data-reveal data-reveal-delay="100">
+          <div class="trust-card__icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2L3 5v5c0 3.6 2.8 6.6 7 7.4 4.2-.8 7-3.8 7-7.4V5l-7-3z"/></svg>
+          </div>
+          <div class="trust-card__title">GDPR-aligned by design</div>
+          <p class="trust-card__body">
+            Right to deletion via API. Per-tenant data isolation. DPA on request.
+            Source-attribution receipts double as audit trails.
+          </p>
+        </div>
+        <div class="trust-card" data-reveal data-reveal-delay="200">
+          <div class="trust-card__icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="9" width="12" height="9" rx="1.5"/><path d="M7 9V6a3 3 0 0 1 6 0v3"/></svg>
+          </div>
+          <div class="trust-card__title">SOC 2 Type II — in progress</div>
+          <p class="trust-card__body">
+            Currently in observation window. SOC 2 Type I report available on request.
+            ISO 27001 prep alongside.
+          </p>
+        </div>
+        <div class="trust-card" data-reveal data-reveal-delay="300">
+          <div class="trust-card__icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5l-5 5 5 5M12 5l5 5-5 5"/></svg>
+          </div>
+          <div class="trust-card__title">Sandbox-first integration</div>
+          <p class="trust-card__body">
+            Test keys (<code>kyb_test_*</code>) run the real pipeline but never bill,
+            never publish, never count against quota. Safe to ship in CI.
+          </p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="how" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-      <div class="wrap">
-        <div class="sec-h" data-reveal>How it works</div>
-        <div class="sec-t d1" data-reveal>A verdict in one call.</div>
-        <div class="steps">
-          <div class="step" data-reveal><div class="k">01</div><h3>Submit a URL</h3><p>Send a merchant's website to the API (or paste it in the dashboard).</p></div>
-          <div class="step" data-reveal><div class="k">02</div><h3>13 sources run in parallel</h3><p>Sanctions, PEPs, abuse, registry, domain age, popularity and adverse media — screened at once.</p></div>
-          <div class="step" data-reveal><div class="k">03</div><h3>Get a scored verdict</h3><p>A risk tier plus every contributing signal, each citing its source. Onboard, review, or reject with confidence.</p></div>
-        </div>
+  <!-- ============================================================
+       9. FINAL CTA
+       ============================================================ -->
+  <section class="final-cta">
+    <div class="section__inner">
+      <h2 class="lp-h2">Start verifying in 60 seconds.</h2>
+      <p class="lp-lede lp-lede--on-dark">Free forever tier · 10 scans / month · no credit card</p>
+      <div class="final-cta__row">
+        <a href="https://kyb-scanner.onrender.com/signup/" class="btn btn--primary">
+          Create your free account
+          <svg class="btn__arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M9 3l4 4-4 4"/></svg>
+        </a>
+        <a href="https://kyb-scanner.onrender.com/api/v1/docs/" target="_blank" rel="noopener" class="btn btn--ghost-on-dark">
+          Read the API docs
+        </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="band">
-      <div class="wrap">
-        <h2 data-reveal>Know your business. With the receipts.</h2>
-        <p data-reveal class="d1">Spin up a free account and run your first scan in under a minute.</p>
-        <a href="https://kyb-scanner.onrender.com/signup/" target="_blank" rel="noopener" class="btn btn-primary" style="height:46px;padding:0 26px;font-size:15px">Get started free →</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap foot">
-      <div>© <span id="yr">2026</span> <a href="/">Mado Digital LLC</a> · Sourcemark</div>
-      <div class="foot-links">
-        <a href="https://kyb-scanner.onrender.com/" target="_blank" rel="noopener">Launch app</a>
-        <a href="https://kyb-scanner.onrender.com/api/v1/docs/" target="_blank" rel="noopener">API docs</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="lp-footer">
+    <div class="lp-footer__inner">
+      <span>&copy; Sourcemark — know your business, with the receipts.</span>
+      <div class="lp-footer__links">
+        <a href="https://kyb-scanner.onrender.com/api/v1/docs/" target="_blank" rel="noopener">API</a>
+        <a href="https://kyb-scanner.onrender.com/api/v1/redoc/" target="_blank" rel="noopener">Reference</a>
+        <a href="https://kyb-scanner.onrender.com/status/" target="_blank" rel="noopener">Status</a>
+        <a href="https://kyb-scanner.onrender.com/login/">Log in</a>
       </div>
     </div>
   </footer>
-  <script>
-(function(){
-  document.getElementById('yr').textContent=new Date().getFullYear();
-  var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els=document.querySelectorAll('[data-reveal]');
-  if(rm||!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('is-visible');});
-    document.querySelectorAll('[data-count-to]').forEach(function(el){el.textContent=el.dataset.countTo;});return;}
-  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.15});
-  els.forEach(function(el){io.observe(el);});
-  var cio=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){var el=e.target,t=parseFloat(el.dataset.countTo),s0=performance.now();(function tick(n){var pr=Math.min(1,(n-s0)/900),v=1-Math.pow(1-pr,3);el.textContent=Math.round(t*v);if(pr<1)requestAnimationFrame(tick);else el.textContent=t;})(performance.now());cio.unobserve(el);}});},{threshold:.6});
-  document.querySelectorAll('[data-count-to]').forEach(function(el){cio.observe(el);});
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(ev){var id=a.getAttribute('href').slice(1);var tg=id&&document.getElementById(id);if(!tg)return;ev.preventDefault();tg.scrollIntoView({behavior:'smooth',block:'start'});});});
+</main>
+<script>
+/* kyb-scanner landing — interactions
+ *   - Intersection-observer scroll reveals
+ *   - Number counters (stat strip)
+ *   - Copy-to-clipboard for the code sample
+ *   - Smooth-scroll for in-page anchors
+ * Respects `prefers-reduced-motion`.
+ */
+(function () {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------------- Scroll reveal ----------------
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  if (!reducedMotion && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
+    revealEls.forEach((el) => io.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  // ---------------- Number counters ----------------
+  const counterEls = document.querySelectorAll('[data-count-to]');
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.countTo);
+    const decimals = parseInt(el.dataset.countDecimals || '0', 10);
+    const duration = parseInt(el.dataset.countDuration || '1200', 10);
+    const start = performance.now();
+    function tick(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+      el.textContent = (target * eased).toFixed(decimals);
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = target.toFixed(decimals);
+    }
+    requestAnimationFrame(tick);
+  }
+  if (!reducedMotion && 'IntersectionObserver' in window) {
+    const countIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counterEls.forEach((el) => countIo.observe(el));
+  } else {
+    counterEls.forEach((el) => {
+      const target = parseFloat(el.dataset.countTo);
+      const decimals = parseInt(el.dataset.countDecimals || '0', 10);
+      el.textContent = target.toFixed(decimals);
+    });
+  }
+
+  // ---------------- Copy code sample ----------------
+  document.querySelectorAll('[data-copy-target]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const sel = btn.getAttribute('data-copy-target');
+      const target = sel && document.querySelector(sel);
+      if (!target) return;
+      const text = target.innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+        const original = btn.textContent;
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1600);
+      } catch (e) {
+        // fallback: select the text
+        const range = document.createRange();
+        range.selectNodeContents(target);
+        const sel2 = window.getSelection();
+        sel2.removeAllRanges();
+        sel2.addRange(range);
+      }
+    });
+  });
+
+  // ---------------- Smooth-scroll for anchor links ----------------
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (ev) => {
+      const id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      ev.preventDefault();
+      target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
 })();
+
 </script>
 </body>
 </html>
