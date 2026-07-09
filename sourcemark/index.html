@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sourcemark — Know any business, with the receipts</title>
+  <meta name="description" content="Sourcemark is KYB (Know Your Business) infrastructure for developers. Submit a URL and get a scored merchant-risk verdict where every signal cites its source — sanctions, PEPs, abuse feeds, domain intelligence, adverse media. 13 official sources, one API.">
+  <meta name="keywords" content="KYB, know your business, merchant risk, business verification, sanctions screening, PEP screening, due diligence API, fintech compliance, onboarding risk, Sourcemark">
+
+  <meta property="og:title" content="Sourcemark — Know any business, with the receipts">
+  <meta property="og:description" content="KYB infrastructure for devs. Submit a URL, get a scored risk verdict where every signal cites its source. Sanctions, PEPs, abuse, domain intel, adverse media — 13 sources, one API.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://madodigital.net/sourcemark/">
+  <meta property="og:image" content="https://madodigital.net/sourcemark/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sourcemark — Know any business, with the receipts">
+  <meta name="twitter:description" content="KYB infrastructure for devs. Submit a URL, get a scored risk verdict where every signal cites its source.">
+
+  <link rel="canonical" href="https://madodigital.net/sourcemark/">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sourcemark",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "Sourcemark is KYB (Know Your Business) infrastructure. Submit a business URL and receive a scored merchant-risk verdict in which every contributing signal cites its source — sanctions lists, PEP data, abuse feeds, domain intelligence and adverse media across 13 official sources.",
+    "url": "https://madodigital.net/sourcemark/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Organization", "name": "Mado Digital LLC", "url": "https://madodigital.net" },
+    "publisher": { "@type": "Organization", "name": "Mado Digital LLC", "url": "https://madodigital.net" }
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0B1220; --bg-soft:#0f1728; --panel:#131c2f; --line:#1f2b40;
+      --text:#e7ecf3; --muted:#8ea0b9; --brand:#11D06F; --brand-soft:#0f9c55;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
+      line-height:1.6;-webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+    h1,h2,h3,.mono{font-family:'Space Grotesk','Inter',sans-serif}
+    .mono{font-family:ui-monospace,'JetBrains Mono',monospace}
+
+    /* nav */
+    header{position:sticky;top:0;z-index:20;background:rgba(11,18,32,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .nav{height:60px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:18px}
+    .badge{width:28px;height:28px;border-radius:7px;background:var(--brand);color:var(--bg);
+      display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-family:ui-monospace,monospace}
+    .nav-links{display:flex;align-items:center;gap:22px;font-size:14px}
+    .nav-links a{color:var(--muted)}.nav-links a:hover{color:var(--text)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 18px;border-radius:9px;
+      font-weight:600;font-size:14px;transition:.15s;white-space:nowrap}
+    .btn-primary{background:var(--brand);color:#04210f}.btn-primary:hover{background:#16e07c}
+    .btn-ghost{border:1px solid var(--line);color:var(--text)}.btn-ghost:hover{border-color:#3a4a66}
+
+    /* hero */
+    .hero{padding:88px 0 72px;background:radial-gradient(1100px 480px at 78% -8%,rgba(17,208,111,.10),transparent 60%)}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+    .eyebrow{font-family:'Space Grotesk';font-weight:600;letter-spacing:.16em;font-size:12px;color:var(--brand);
+      text-transform:uppercase;display:flex;align-items:center;gap:9px}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px rgba(17,208,111,.18)}
+    h1{font-size:56px;line-height:1.02;font-weight:700;letter-spacing:-.02em;margin:18px 0 20px}
+    h1 .g{color:var(--brand)}
+    .lead{font-size:18px;color:#b7c2d4;max-width:520px}
+    .cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+    .sub{margin-top:16px;font-size:13px;color:var(--muted)}
+
+    /* verdict card */
+    .card{background:linear-gradient(180deg,#fff,#f6f8fb);color:#0b1220;border-radius:16px;overflow:hidden;
+      box-shadow:0 30px 60px -20px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.06)}
+    .card-top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #eef1f6}
+    .live{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#0b1220}
+    .live .dot{background:var(--brand)}
+    .scn{font-family:ui-monospace,monospace;font-size:12px;color:#94a3b8}
+    .verdict{display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(17,208,111,.06)}
+    .risk-l{display:flex;flex-direction:column;gap:2px}
+    .risk-l b{font-family:'Space Grotesk';font-size:15px}
+    .risk-l span{font-size:13px;color:#64748b}
+    .score{text-align:right}.score .n{font-family:'Space Grotesk';font-weight:700;font-size:34px;line-height:1}
+    .score .of{color:#94a3b8;font-size:14px}.score .lbl{font-size:11px;color:#94a3b8;letter-spacing:.04em}
+    .row{display:flex;align-items:center;gap:12px;padding:12px 18px;border-top:1px solid #eef1f6;font-size:14px}
+    .chip{font-family:ui-monospace,monospace;font-weight:700;font-size:12px;min-width:42px;text-align:center;
+      padding:4px 8px;border-radius:6px;background:#e8f8ef;color:#0f9c55}
+    .row .src{margin-left:auto;font-family:ui-monospace,monospace;font-size:11px;color:#94a3b8;text-transform:uppercase}
+
+    /* sections */
+    section{padding:64px 0}
+    .sec-h{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:600;font-family:'Space Grotesk'}
+    .sec-t{font-size:32px;font-weight:700;letter-spacing:-.01em;margin:10px 0 8px}
+    .sec-d{color:#b7c2d4;max-width:640px}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
+    .feat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+    .feat h3{font-size:17px;margin-bottom:7px}
+    .feat p{color:#9fb0c6;font-size:14.5px}
+    .feat .ic{width:38px;height:38px;border-radius:9px;background:rgba(17,208,111,.12);color:var(--brand);
+      display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:19px}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+    .step{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:22px}
+    .step .k{font-family:ui-monospace,monospace;color:var(--brand);font-weight:700;font-size:13px}
+    .step h3{font-size:16px;margin:8px 0 6px}.step p{color:#9fb0c6;font-size:14px}
+
+    .band{background:linear-gradient(180deg,var(--bg-soft),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+    .band h2{font-size:34px;font-weight:700;letter-spacing:-.01em}
+    .band p{color:#b7c2d4;margin:12px auto 26px;max-width:520px}
+
+    footer{padding:38px 0;color:var(--muted);font-size:14px}
+    .foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    .foot a{color:var(--muted)}.foot a:hover{color:var(--text)}
+    .foot-links{display:flex;gap:20px;flex-wrap:wrap}
+
+    @media(max-width:840px){
+      .grid{grid-template-columns:1fr;gap:40px}h1{font-size:42px}
+      .cards,.steps{grid-template-columns:1fr}.nav-links a:not(.btn){display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="/sourcemark/" class="brand"><img src="icon.png" alt="Sourcemark" class="badge" style="object-fit:cover;background:none;padding:0"> Sourcemark</a>
+      <nav class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="https://kyb-scanner.onrender.com/" target="_blank" rel="noopener" class="btn btn-primary">Launch app →</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> KYB Infrastructure · Built for devs</div>
+          <h1>Know any business.<br>With the <span class="g">receipts.</span></h1>
+          <p class="lead">Submit a URL. Sourcemark runs 13 official sources in parallel — sanctions, PEPs, abuse feeds, domain intelligence, adverse media — and returns a scored risk verdict where <strong>every signal cites its source.</strong> No black box. Just evidence.</p>
+          <div class="cta">
+            <a href="https://kyb-scanner.onrender.com/signup/" target="_blank" rel="noopener" class="btn btn-primary">Get started free</a>
+            <a href="https://kyb-scanner.onrender.com/" target="_blank" rel="noopener" class="btn btn-ghost">See it live →</a>
+          </div>
+          <p class="sub">Free tier · no card · sanctions + PEP + abuse screening out of the box.</p>
+        </div>
+
+        <div class="card" aria-hidden="true">
+          <div class="card-top">
+            <span class="live"><span class="dot"></span> LIVE · stripe.com</span>
+            <span class="scn">scn_8K2a4f</span>
+          </div>
+          <div class="verdict">
+            <div class="risk-l"><b>LOW RISK</b><span>Verdict: clear to onboard</span></div>
+            <div class="score"><div class="n">6<span class="of">/100</span></div><div class="lbl">RISK · LOWER IS SAFER</div></div>
+          </div>
+          <div class="row"><span class="chip">−20</span> Trusted infrastructure <span class="src">Tranco #47</span></div>
+          <div class="row"><span class="chip">−12</span> Active registry filing <span class="src">SEC EDGAR</span></div>
+          <div class="row"><span class="chip">−10</span> Domain age 14y <span class="src">ICANN RDAP</span></div>
+          <div class="row"><span class="chip">−8</span> No sanctions / PEP hit <span class="src">OFAC · OpenSanctions</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="wrap">
+        <div class="sec-h">Why Sourcemark</div>
+        <div class="sec-t">Auditable by design.</div>
+        <p class="sec-d">Most KYB tools hand you a score and ask you to trust it. Sourcemark hands you the score <em>and</em> the paper trail — every rule that fired links back to the exact source it came from.</p>
+        <div class="cards">
+          <div class="feat"><div class="ic">🧾</div><h3>Source-cited verdicts</h3><p>Every signal — positive or negative — carries a citation to the authority it came from. Perfect for audit trails and compliance reviews.</p></div>
+          <div class="feat"><div class="ic">🌐</div><h3>13 official sources</h3><p>OFAC, UN, EU &amp; UK sanctions, OpenSanctions PEPs, URLhaus &amp; OpenPhish abuse feeds, RDAP/WHOIS, SEC EDGAR, Tranco, adverse media, and more — run in parallel.</p></div>
+          <div class="feat"><div class="ic">🛰️</div><h3>Continuous monitoring</h3><p>Register a merchant once and get a webhook the moment its risk tier changes — a new sanctions hit, a domain flag, a score shift.</p></div>
+          <div class="feat"><div class="ic">⚡</div><h3>Developer-first API</h3><p>One REST call in, a structured verdict out. Sandbox keys, OpenAPI docs, and a Python SDK. Built to drop into your onboarding flow.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div class="wrap">
+        <div class="sec-h">How it works</div>
+        <div class="sec-t">A verdict in one call.</div>
+        <div class="steps">
+          <div class="step"><div class="k">01</div><h3>Submit a URL</h3><p>Send a merchant's website to the API (or paste it in the dashboard).</p></div>
+          <div class="step"><div class="k">02</div><h3>13 sources run in parallel</h3><p>Sanctions, PEPs, abuse, registry, domain age, popularity and adverse media — screened at once.</p></div>
+          <div class="step"><div class="k">03</div><h3>Get a scored verdict</h3><p>A risk tier plus every contributing signal, each citing its source. Onboard, review, or reject with confidence.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>Know your business. With the receipts.</h2>
+        <p>Spin up a free account and run your first scan in under a minute.</p>
+        <a href="https://kyb-scanner.onrender.com/signup/" target="_blank" rel="noopener" class="btn btn-primary" style="height:46px;padding:0 26px;font-size:15px">Get started free →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="yr">2026</span> <a href="/">Mado Digital LLC</a> · Sourcemark</div>
+      <div class="foot-links">
+        <a href="https://kyb-scanner.onrender.com/" target="_blank" rel="noopener">Launch app</a>
+        <a href="https://kyb-scanner.onrender.com/api/v1/docs/" target="_blank" rel="noopener">API docs</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+</body>
+</html>
