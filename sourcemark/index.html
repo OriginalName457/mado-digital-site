@@ -126,6 +126,17 @@
       .grid{grid-template-columns:1fr;gap:40px}h1{font-size:42px}
       .cards,.steps{grid-template-columns:1fr}.nav-links a:not(.btn){display:none}
     }
+
+    /* --- scroll-reveal animation layer (matches the app landing) --- */
+    [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+    [data-reveal].is-visible{opacity:1;transform:none}
+    .d1{transition-delay:.09s}.d2{transition-delay:.18s}.d3{transition-delay:.27s}.d4{transition-delay:.36s}
+    .cards .feat:nth-child(2){transition-delay:.1s}.cards .feat:nth-child(3){transition-delay:.2s}.cards .feat:nth-child(4){transition-delay:.3s}
+    .steps .step:nth-child(2){transition-delay:.12s}.steps .step:nth-child(3){transition-delay:.24s}
+    .card .row{opacity:0;transform:translateX(12px);transition:opacity .5s ease,transform .5s ease}
+    .card.is-visible .row{opacity:1;transform:none}
+    .card.is-visible .row:nth-child(3){transition-delay:.12s}.card.is-visible .row:nth-child(4){transition-delay:.24s}.card.is-visible .row:nth-child(5){transition-delay:.36s}.card.is-visible .row:nth-child(6){transition-delay:.48s}
+    @media(prefers-reduced-motion:reduce){[data-reveal],.card .row{opacity:1!important;transform:none!important;transition:none!important}}
   </style>
 </head>
 <body>
@@ -144,24 +155,24 @@
     <section class="hero">
       <div class="wrap grid">
         <div>
-          <div class="eyebrow"><span class="dot"></span> KYB Infrastructure · Built for devs</div>
-          <h1>Know any business.<br>With the <span class="g">receipts.</span></h1>
-          <p class="lead">Submit a URL. Sourcemark runs 13 official sources in parallel — sanctions, PEPs, abuse feeds, domain intelligence, adverse media — and returns a scored risk verdict where <strong>every signal cites its source.</strong> No black box. Just evidence.</p>
-          <div class="cta">
+          <div class="eyebrow" data-reveal><span class="dot"></span> KYB Infrastructure · Built for devs</div>
+          <h1 class="d1" data-reveal>Know any business.<br>With the <span class="g">receipts.</span></h1>
+          <p class="lead d2" data-reveal>Submit a URL. Sourcemark runs 13 official sources in parallel — sanctions, PEPs, abuse feeds, domain intelligence, adverse media — and returns a scored risk verdict where <strong>every signal cites its source.</strong> No black box. Just evidence.</p>
+          <div class="cta d3" data-reveal>
             <a href="https://kyb-scanner.onrender.com/signup/" target="_blank" rel="noopener" class="btn btn-primary">Get started free</a>
             <a href="https://kyb-scanner.onrender.com/" target="_blank" rel="noopener" class="btn btn-ghost">See it live →</a>
           </div>
-          <p class="sub">Free tier · no card · sanctions + PEP + abuse screening out of the box.</p>
+          <p class="sub d4" data-reveal>Free tier · no card · sanctions + PEP + abuse screening out of the box.</p>
         </div>
 
-        <div class="card" aria-hidden="true">
+        <div class="card d2" data-reveal aria-hidden="true">
           <div class="card-top">
             <span class="live"><span class="dot"></span> LIVE · stripe.com</span>
             <span class="scn">scn_8K2a4f</span>
           </div>
           <div class="verdict">
             <div class="risk-l"><b>LOW RISK</b><span>Verdict: clear to onboard</span></div>
-            <div class="score"><div class="n">6<span class="of">/100</span></div><div class="lbl">RISK · LOWER IS SAFER</div></div>
+            <div class="score"><div class="n"><span data-count-to="6">0</span><span class="of">/100</span></div><div class="lbl">RISK · LOWER IS SAFER</div></div>
           </div>
           <div class="row"><span class="chip">−20</span> Trusted infrastructure <span class="src">Tranco #47</span></div>
           <div class="row"><span class="chip">−12</span> Active registry filing <span class="src">SEC EDGAR</span></div>
@@ -173,34 +184,34 @@
 
     <section id="features">
       <div class="wrap">
-        <div class="sec-h">Why Sourcemark</div>
-        <div class="sec-t">Auditable by design.</div>
-        <p class="sec-d">Most KYB tools hand you a score and ask you to trust it. Sourcemark hands you the score <em>and</em> the paper trail — every rule that fired links back to the exact source it came from.</p>
+        <div class="sec-h" data-reveal>Why Sourcemark</div>
+        <div class="sec-t d1" data-reveal>Auditable by design.</div>
+        <p class="sec-d d2" data-reveal>Most KYB tools hand you a score and ask you to trust it. Sourcemark hands you the score <em>and</em> the paper trail — every rule that fired links back to the exact source it came from.</p>
         <div class="cards">
-          <div class="feat"><div class="ic">🧾</div><h3>Source-cited verdicts</h3><p>Every signal — positive or negative — carries a citation to the authority it came from. Perfect for audit trails and compliance reviews.</p></div>
-          <div class="feat"><div class="ic">🌐</div><h3>13 official sources</h3><p>OFAC, UN, EU &amp; UK sanctions, OpenSanctions PEPs, URLhaus &amp; OpenPhish abuse feeds, RDAP/WHOIS, SEC EDGAR, Tranco, adverse media, and more — run in parallel.</p></div>
-          <div class="feat"><div class="ic">🛰️</div><h3>Continuous monitoring</h3><p>Register a merchant once and get a webhook the moment its risk tier changes — a new sanctions hit, a domain flag, a score shift.</p></div>
-          <div class="feat"><div class="ic">⚡</div><h3>Developer-first API</h3><p>One REST call in, a structured verdict out. Sandbox keys, OpenAPI docs, and a Python SDK. Built to drop into your onboarding flow.</p></div>
+          <div class="feat" data-reveal><div class="ic">🧾</div><h3>Source-cited verdicts</h3><p>Every signal — positive or negative — carries a citation to the authority it came from. Perfect for audit trails and compliance reviews.</p></div>
+          <div class="feat" data-reveal><div class="ic">🌐</div><h3>13 official sources</h3><p>OFAC, UN, EU &amp; UK sanctions, OpenSanctions PEPs, URLhaus &amp; OpenPhish abuse feeds, RDAP/WHOIS, SEC EDGAR, Tranco, adverse media, and more — run in parallel.</p></div>
+          <div class="feat" data-reveal><div class="ic">🛰️</div><h3>Continuous monitoring</h3><p>Register a merchant once and get a webhook the moment its risk tier changes — a new sanctions hit, a domain flag, a score shift.</p></div>
+          <div class="feat" data-reveal><div class="ic">⚡</div><h3>Developer-first API</h3><p>One REST call in, a structured verdict out. Sandbox keys, OpenAPI docs, and a Python SDK. Built to drop into your onboarding flow.</p></div>
         </div>
       </div>
     </section>
 
     <section id="how" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
       <div class="wrap">
-        <div class="sec-h">How it works</div>
-        <div class="sec-t">A verdict in one call.</div>
+        <div class="sec-h" data-reveal>How it works</div>
+        <div class="sec-t d1" data-reveal>A verdict in one call.</div>
         <div class="steps">
-          <div class="step"><div class="k">01</div><h3>Submit a URL</h3><p>Send a merchant's website to the API (or paste it in the dashboard).</p></div>
-          <div class="step"><div class="k">02</div><h3>13 sources run in parallel</h3><p>Sanctions, PEPs, abuse, registry, domain age, popularity and adverse media — screened at once.</p></div>
-          <div class="step"><div class="k">03</div><h3>Get a scored verdict</h3><p>A risk tier plus every contributing signal, each citing its source. Onboard, review, or reject with confidence.</p></div>
+          <div class="step" data-reveal><div class="k">01</div><h3>Submit a URL</h3><p>Send a merchant's website to the API (or paste it in the dashboard).</p></div>
+          <div class="step" data-reveal><div class="k">02</div><h3>13 sources run in parallel</h3><p>Sanctions, PEPs, abuse, registry, domain age, popularity and adverse media — screened at once.</p></div>
+          <div class="step" data-reveal><div class="k">03</div><h3>Get a scored verdict</h3><p>A risk tier plus every contributing signal, each citing its source. Onboard, review, or reject with confidence.</p></div>
         </div>
       </div>
     </section>
 
     <section class="band">
       <div class="wrap">
-        <h2>Know your business. With the receipts.</h2>
-        <p>Spin up a free account and run your first scan in under a minute.</p>
+        <h2 data-reveal>Know your business. With the receipts.</h2>
+        <p data-reveal class="d1">Spin up a free account and run your first scan in under a minute.</p>
         <a href="https://kyb-scanner.onrender.com/signup/" target="_blank" rel="noopener" class="btn btn-primary" style="height:46px;padding:0 26px;font-size:15px">Get started free →</a>
       </div>
     </section>
@@ -217,6 +228,19 @@
       </div>
     </div>
   </footer>
-  <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+  <script>
+(function(){
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els=document.querySelectorAll('[data-reveal]');
+  if(rm||!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('is-visible');});
+    document.querySelectorAll('[data-count-to]').forEach(function(el){el.textContent=el.dataset.countTo;});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.15});
+  els.forEach(function(el){io.observe(el);});
+  var cio=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){var el=e.target,t=parseFloat(el.dataset.countTo),s0=performance.now();(function tick(n){var pr=Math.min(1,(n-s0)/900),v=1-Math.pow(1-pr,3);el.textContent=Math.round(t*v);if(pr<1)requestAnimationFrame(tick);else el.textContent=t;})(performance.now());cio.unobserve(el);}});},{threshold:.6});
+  document.querySelectorAll('[data-count-to]').forEach(function(el){cio.observe(el);});
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(ev){var id=a.getAttribute('href').slice(1);var tg=id&&document.getElementById(id);if(!tg)return;ev.preventDefault();tg.scrollIntoView({behavior:'smooth',block:'start'});});});
+})();
+</script>
 </body>
 </html>
