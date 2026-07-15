@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://madodigital.net/madofinds/sitemap.xml
