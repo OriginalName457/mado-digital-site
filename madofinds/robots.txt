@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: https://cyberoil1997.github.io/sitemap.xml
+Sitemap: https://cyberoil1997.github.io/madofinds/sitemap.xml
