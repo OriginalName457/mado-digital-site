@@ -6,114 +6,44 @@
     <title>Privacy Policy - Mado Digital</title>
     <meta name="description" content="Privacy Policy for Mado Digital apps including Gomi Guide.">
     <link rel="canonical" href="https://madodigital.net/privacy.html">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%23a855f7'/><text x='50' y='68' font-size='55' font-weight='bold' text-anchor='middle' fill='white' font-family='sans-serif'>M</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='22' width='100' height='100' fill='%232BE38A'/><text x='50' y='71' font-size='62' font-weight='bold' text-anchor='middle' fill='%23061410' font-family='sans-serif'>M</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-base: #0a0a0f;
-            --bg-mid: #0d0d1a;
-            --bg-deep: #111128;
-            --purple: #a855f7;
-            --cyan: #06b6d4;
-            --text: #f1f5f9;
-            --text-dim: rgba(241, 245, 249, 0.65);
-            --glass: rgba(255, 255, 255, 0.04);
-            --glass-border: rgba(255, 255, 255, 0.08);
-        }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-base);
-            color: var(--text);
-            min-height: 100vh;
-            line-height: 1.7;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background:
-                radial-gradient(at 20% 10%, rgba(168, 85, 247, 0.12), transparent 50%),
-                radial-gradient(at 80% 80%, rgba(6, 182, 212, 0.08), transparent 50%);
-        }
-        .container { max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem; }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.875rem;
-            margin-bottom: 2rem;
-            transition: color 0.2s;
-        }
-        .back-link:hover { color: var(--purple); }
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 5vw, 2.75rem);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--text) 0%, var(--purple) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .updated {
-            color: var(--text-dim);
-            font-size: 0.875rem;
-            margin-bottom: 2.5rem;
-        }
-        .intro {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            color: var(--text-dim);
-        }
-        h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.375rem;
-            font-weight: 700;
-            margin-top: 2.5rem;
-            margin-bottom: 0.75rem;
-            color: var(--text);
-        }
-        p { color: var(--text-dim); margin-bottom: 0.75rem; }
-        ul { list-style: none; padding-left: 0; margin-bottom: 0.75rem; }
-        li {
-            color: var(--text-dim);
-            padding-left: 1.5rem;
-            position: relative;
-            margin-bottom: 0.5rem;
-        }
-        li::before {
-            content: '';
-            position: absolute;
-            left: 0.25rem;
-            top: 0.75rem;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--purple);
-        }
-        a { color: var(--purple); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        footer {
-            border-top: 1px solid var(--glass-border);
-            margin-top: 4rem;
-            padding-top: 2rem;
-            text-align: center;
-            color: var(--text-dim);
-            font-size: 0.875rem;
-        }
+      *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+      :root{
+        --bg:#060A08; --surface:#0E1613; --line:#1D2822; --line-2:#2B3A32;
+        --text:#EAF2ED; --muted:#93A79D; --brand:#2BE38A; --brand-ink:#051410;
+        --display:'Bricolage Grotesque','Inter',sans-serif;
+        --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+        --mono:'JetBrains Mono','SFMono-Regular',ui-monospace,Consolas,monospace;
+      }
+      html{scroll-behavior:smooth;background:var(--bg);}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;}
+      a{color:var(--brand);text-decoration:none;}
+      a:hover{text-decoration:underline;}
+      .topbar{border-bottom:1px solid var(--line);background:rgba(6,10,8,.7);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10;}
+      .topbar .inner{max-width:760px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;}
+      .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:17px;color:var(--text);}
+      .brand .mark{width:28px;height:28px;border-radius:8px;background:var(--brand);color:var(--brand-ink);font-family:var(--display);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;}
+      .container{max-width:760px;margin:0 auto;padding:3.5rem 1.5rem 5rem;}
+      .back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);font-size:.85rem;margin-bottom:2rem;}
+      .back-link:hover{color:var(--brand);text-decoration:none;}
+      h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,2.7rem);letter-spacing:-.02em;margin-bottom:.4rem;color:var(--text);}
+      .updated{font-family:var(--mono);color:var(--muted);font-size:.8rem;letter-spacing:.02em;margin-bottom:2.4rem;}
+      .intro{background:var(--surface);border:1px solid var(--line-2);border-radius:16px;padding:1.4rem 1.5rem;margin-bottom:2rem;color:var(--muted);}
+      h2{font-family:var(--display);font-weight:700;font-size:1.35rem;letter-spacing:-.01em;margin-top:2.5rem;margin-bottom:.8rem;color:var(--text);}
+      p{color:var(--muted);margin-bottom:.75rem;}
+      ul{list-style:none;padding-left:0;margin-bottom:.75rem;}
+      li{color:var(--muted);padding-left:1.5rem;position:relative;margin-bottom:.55rem;}
+      li::before{content:'';position:absolute;left:.25rem;top:.72rem;width:6px;height:6px;border-radius:50%;background:var(--brand);}
+      strong{color:var(--text);font-weight:600;}
+      footer{border-top:1px solid var(--line);margin-top:4rem;padding-top:2rem;text-align:center;color:var(--muted);font-size:.85rem;}
     </style>
 </head>
 <body>
+    <div class="topbar"><div class="inner"><a class="brand" href="/"><span class="mark">M</span> Mado Digital</a></div></div>
     <main class="container">
         <a href="/" class="back-link">← Back to Mado Digital</a>
 
